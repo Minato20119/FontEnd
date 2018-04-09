@@ -1,0 +1,184 @@
+#block-menu {
+    background:#3175ba url(C:/Users/Minato/Documents/JS/Final/Image/menubargradient.png) repeat-x;
+
+    padding: 5px;
+}
+
+div {
+    display: block;
+}
+
+body {
+    /* font: normal 14px/20px Arial, Helvetica, sans-serif; */
+    color: #444;
+}
+
+.menu a, .menu span {
+    display: block;
+}
+
+.menu-dropdown li.level1:hover .level1, .menu-dropdown li.remain .level1 {
+    color: #fff;
+    background: #3f92e4 url(C:/Users/Minato/Documents/JS/Final/Image/menuhover_02.png) repeat-x;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
+.menu-dropdown a.level1, .menu-dropdown span.level1 {
+    font-family: Arial, Helvetica, sans-serif;
+    /* color: #FFFFFF;
+    border: 1px solid transparent; */
+}
+
+/* a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: auto;
+    text-decoration: underline;
+} */
+
+/* li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+} */
+
+.wrapper {
+    /* -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; */
+    margin: auto;
+    max-width: 1024px;
+}
+
+/* #menu {
+    float: left;
+} */
+
+/* .menu-dropdown {
+    margin-bottom: -10px;
+} */
+
+.menu-dropdown, .menu-dropdown .level1, .menu-dropdown .level1 > span {
+    float: left;
+}
+
+.menu, .menu ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+/* ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+} */
+
+.menu-dropdown li.level1 {
+    margin-right: 10px;
+    padding-bottom: 10px;
+}
+
+/* .menu-dropdown li {
+    position: relative;
+} */
+
+/* li {
+    line-height: inherit;
+} */
+
+.menu-dropdown li.active .level1 {
+    color: #fff;
+    background: #3276b9 url(C:/Users/Minato/Documents/JS/Final/Image/menuactive_02.png) repeat-x;
+    border: 1px solid transparent;
+    /* border-radius: 3px; */
+    /* -webkit-border-radius: 3px; */
+    /* -moz-border-radius: 3px; */
+}
+
+/* .menu a {
+    text-decoration: none;
+} */
+
+.menu-dropdown a.level1 > span {
+    /* height: 30px; */
+    padding: 0 10px;
+    line-height: 30px;
+}
+
+.menu-dropdown .dropdown {
+    top: 39px;
+    border: none;
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 100;
+    width: 300px;
+}
+
+/* .menu-dropdown .dropdown-bg > div {
+    padding: 5px;
+    border: 1px solid transparent;
+    border-top: none;
+    background: #328ae3 url(C:/Users/Minato/Documents/JS/Final/Image/dropdowngradient.png) repeat-x;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    overflow: hidden;
+} */
+
+/* .menu-dropdown .column {
+    float: left;
+} */
+
+/* [class*='width'] {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+} */
+
+/* .width100 {
+    width: 100%;
+} */
+
+/* .menu-dropdown .small {
+    font-size: inherit;
+} */
+
+/* ol ul, ul ol, ul ul, ol ol {
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+} */
+
+/* ul ul, ol ul {
+    list-style-type: circle;
+} */
+
+
+/* .menu-dropdown li.level2:first-child {
+    border: none;
+} */
+
+/* .menu-dropdown li.level2 {
+    margin: 2px;
+    border: none;
+} */
+
+/* .menu-dropdown a.level2, .menu-dropdown span.level2 {
+    border-radius: 3px;
+    background: #082f57;
+    color: #fff;
+} */
+
+/* .menu-dropdown a.level2 > span, .menu-dropdown span.level2 > span {
+    padding: 5px 6px;
+    padding: 7px 0;
+    line-height: 21px;
+    overflow: hidden;
+} */

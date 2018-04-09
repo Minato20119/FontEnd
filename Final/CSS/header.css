@@ -1,0 +1,42 @@
+body {
+	font: normal 14px/20px Arial, Helvetica, sans-serif;
+}
+
+#block-header {
+    background:#3377BB url(C:/Users/Minato/Documents/JS/Final/Image/gradient.png) repeat-x;
+  }
+
+#toolbar, #header, #headerbar {
+    color: #fff; 
+}
+
+.float-left { 
+    float: left; 
+}
+.float-right { 
+    float: right; 
+}
+
+div.mod-languages ul {
+    margin: 0;
+}
+
+.wrapper {
+    max-width: 1024px;
+    margin: auto;
+}
+
+div.mod-languages ul.lang-inline li {
+    display: inline;
+}
+
+div.mod-languages li {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+div.mod-languages a {
+    text-decoration: none;
+}
+
+/* ?? */

@@ -1,0 +1,81 @@
+document.observe('dom:loaded', function() {
+  initMultisel();
+});
+
+function initMultisel() {
+
+  $$('.multisel').each(function(e){
+    if (e.hasClassName('initialised')) {
+      return false;
+    }
+    e.addClassName('initialised');
+
+    if (e.down('.multisel_drop_down').down('input[type="checkbox"]').getValue() == '') {
+      var first_value = e.down('.multisel_drop_down').select('.multisel_value')[0];
+      e.down('.multisel_display').setValue(first_value.innerHTML);
+      first_value.up('li').remove();
+    } else if(e.down('.multisel_drop_down').down('input[type="checkbox"]').getValue() != null){
+      e.down('.multisel_drop_down').down('input[type="checkbox"]').checked = true;
+    }
+
+    update_selected(e);
+
+    e.select('.multisel_display, .multisel_button').each(function(el) {
+      el.observe('click', function() {
+        var drop_down = e.down('.multisel_drop_down');
+        if (drop_down.getStyle('display') == 'none') { 
+          $$('body')[0].insert({top:'<div id="lost_focus" style="z-index:99; position:fixed; top:0px; bottom:0px; left:0px; right:0px;"></div>'});
+          
+          $('lost_focus').observe('click', function() {
+            this.remove();
+            drop_down.hide();
+          });
+
+          drop_down.show();
+        }
+      });  
+      
+      e.down('.multisel_drop_down').select('input[type="checkbox"]').each(function(check) {
+        check.observe('change', function() {
+          update_selected(this.up('.multisel'));
+        });
+      });
+    });
+  });  
+}
+
+
+function update_display(multisel) {
+  var display = multisel.down('.multisel_display');
+  var checked = [];
+  multisel.down('.multisel_drop_down').select('input[checked]').each(function(check){
+    var checked_text = check.up('li').down('.multisel_value').innerHTML;
+    checked.push(checked_text);
+  });
+  display.setValue(checked.join(', '));
+}
+
+function update_selected(multisel) {
+  var selected = multisel.down('.multisel_selected');
+  selected.innerHTML = '';
+  multisel.down('.multisel_drop_down').select('input[checked]').each(function(check){
+    check.checked = true;
+    check.disabled = true;
+    var checked = check.up('li');
+    selected.insert(checked.outerHTML);
+    checked.hide();
+  });
+  selected.select('input').each(function(check) {
+    check.checked = true;
+    check.disabled = false;
+    check.up('li').show();
+    check.observe('change', function(){
+      var id = this.id;
+      this.up('li').remove();
+      $(id).disabled = false; 
+      $(id).checked = false;
+      $(id).up('li').show();
+    });
+  });
+}
+

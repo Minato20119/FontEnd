@@ -1,0 +1,283 @@
+body {font-size:80%; font-family:Verdana, arial, sans-serif;}
+
+a img {border:0; text-decoration:none;}
+form {margin:0}
+
+a.aslink {color:#00E; text-decoration:underline; cursor:pointer;}
+
+.main_message {color:black; padding: 15px !important; position:relative; margin:20px 10px; background-color:#fafafa;}
+.main_message {-moz-border-radius: 8px; border-radius: 8px; -webkit-box-shadow:-1px 1px 1px rgba(0,0,0,0.2); -moz-box-shadow:-1px 1px 1px rgba(0,0,0,0.2);}
+.main_message p {margin:0; padding:0;}
+.main_message p + p {margin-top:0.5em;}
+
+span.error {color:red; font:90% arial}
+span.debug {color:black; background-color:yellow; font:90% arial}
+
+/* lists table */
+table.list {border:1px solid #ccc; border-bottom:0px}
+table.list th, table.list td {border-bottom:1px solid #ccc; padding:2px 5px;}
+ul.no_bullet {list-style-type:none;}
+
+/* form line */
+table.form_line {width:100%; background-color:white}
+table.form_line th {padding:1px 3px; vertical-align:bottom; font-style:italic; font-weight:normal; white-space:nowrap;}
+table.form_line th.status {width:1%}
+table.form_line td {border-top:1px solid #eee; white-space:nowrap; padding:1px 3px;}
+table.form_line td.info {width:100%; white-space:normal}
+table.form_line td.buttons {width:100%; border-top-style:none;}
+table.form_line td.selected_line_content {padding:0; background-color:#f4dfff}
+table.form_line tr.mouseover {background:#f4dfff}
+table.form_line td.mouseover {background:#f4dfff}
+table.form_line img {margin:0}
+table.form_line div {word-wrap: break-word;}
+
+.applicant_list_internet table.form_line td.info div {word-wrap:break-word; width: auto;}
+
+/* stage partition */
+table.form_line img.appointment {border-left:2px dotted #efa9d1;}
+table.form_line img.documentation {border-left:2px dotted #efa9d1;}
+table.form_line img.transfer {border-left:2px dotted #efa9d1;}
+table.form_line img.delivery {border-left:2px dotted #efa9d1;}
+
+/* groups displaying */
+table.form_line tr.group {background-color:#c3d7ff; font-weight:bold;}
+table.form_line tr.group.mouseover {background-color:#99bbff;}
+table.form_line td.group.mouseover {background-color:#99bbff;}
+table.form_line a.group {text-decoration:none; background-color:#c3d7ff; font-weight:bold; padding:0 2px; margin-right:6px}
+table.form_line b.group {padding:0 2px; margin-right:6px}
+table.form_line a.group:hover {background-color:#99bbff}
+table.form_line tr.group b.group.mouseover  {text-decoration:none; font-weight:bold; background:#c3d7ff}
+table.form_line td.info {width:100%; overflow:hidden;}
+div.extensible {width:0; white-space:nowrap; padding-right:1px}
+
+table.group_forms td {border-top:1px solid #aaa}
+
+.h2 input{font-size:10px;}
+
+.modal_container {overflow:auto;}
+.modal_container table.modal {border:1px solid gray; border-color:#eee #888 #888 #eee; background:#fff; -moz-border-radius: 6px; -webkit-border-radius: 6px;}
+.modal_container table.modal td.header {background:#eee; border:2px solid white; border-bottom:1px solid #e0e0e0; font-weight:bold; padding:2px 2px 1px 1px; vertical-align:middle;}
+.modal_container table.modal td.header p {color:#21336F; margin:0; padding:3px; vertical-align:middle; text-shadow: rgba(255,255,255,1) -1px 1px 1px}
+.modal_container a.close {float:right;cursor:pointer;}
+.modal_container img.passport_scan {border:1px solid #ccc; margin: 0 5px 5px 5px}
+.modal_container div.modal {width:410px; border:2px solid gray; border-color:#eee #888 #888 #eee; background:#ddd; text-align:center}
+.modal_container div.modal p.header {color:white; background:#56d; font-weight:bold; border-bottom:2px solid #eee; margin:0;}
+.modal_container div.modal p {padding:5px; text-align:left}
+.modal_container div.modal ul {text-align:left}
+#control_overlay {background-color:#eee;}
+
+div.form_status {padding:0}
+
+/* used ? */
+table.form_short {width:100%;}
+table.form_short td {text-align:left; padding:0.2em 0.5em ; vertical-align:top;}
+table.form_short tr.header {background-color:white}
+
+ul.form_short {list-style-type:disc; padding:0; margin:0.4em 1.4em;}
+ul.form_short li {padding:0.2em}
+ul.form_short li.notes {white-space:normal;}
+ul.form_short li img {vertical-align:top}
+
+/* tab */
+div.tabs a {display:block; color:#00e; cursor:pointer; padding:1px 3px 0 3px;}
+
+/* structure */
+table.form_status {margin-top:1em; width:100%; word-break:break-word;}
+table.form_status td.tt {vertical-align:top; padding:10px 0 10px 4px}
+table.form_status td.sti {vertical-align:top; padding:10px 0 10px 0; width:23px}
+
+table.form_status tr.n_a     td.tt {color:#aaa}
+table.form_status tr.closed  td.tt {color:#6cd10b}
+table.form_status tr.sent    td.tt {color:#ff8500}
+table.form_status tr.taken   td.tt {color:#ff8500}
+table.form_status tr.book   td.tt {color:#ff8500}
+table.form_status tr.no_appointment   td.tt {color:#ff8500}
+table.form_status tr.skipped   td.tt {color:#6cd10b}
+table.form_status tr.postapp_sent   td.tt {color:#ff8500}
+table.form_status tr.done    td.tt {color:#6cd10b}
+table.form_status tr.not_required    td.tt {color:#6cd10b}
+table.form_status tr.exempted    td.tt {color:#6cd10b}
+table.form_status tr.received    td.tt {color:#6cd10b}
+table.form_status tr.application_received    td.tt {color:#6cd10b}
+table.form_status tr.postapp_done    td.tt {color:#6cd10b}
+table.form_status tr.postapp_expected_done    td.tt {color:#6cd10b}
+table.form_status tr.postapp_received    td.tt {color:#6cd10b}
+table.form_status tr.error   td.tt {color:#F91700}
+table.form_status tr.deferred   td.tt {color:#F91700}
+table.form_status tr.incomplete   td.tt {color:#F91700}
+table.form_status tr.postapp_inadmissible   td.tt {color:#F91700}
+table.form_status tr.expected   td.tt {color:#F91700}
+table.form_status tr.postapp_expected   td.tt {color:#F91700}
+table.form_status tr.postapp_expected_sent   td.tt {color:#F91700}
+table.form_status tr.expected_error   td.tt {color:#F91700}
+table.form_status tr.postapp_expected_proceeded   td.tt {color:#F91700}
+table.form_status tr.expected_not_come   td.tt {color:#F91700}
+table.form_status tr.postapp_expected_error   td.tt {color:#F91700}
+table.form_status tr.expected_done    td.tt {color:#6cd10b}
+table.form_status tr.pending td.tt {color:#ff8500}
+table.form_status tr.block td.tt {color:red}
+table.form_status tr.postapp_expected_received td.tt {color:#ff8500}
+table.form_status tr.postapp_expected_withdrawn td.tt {color:#ff8500}
+table.form_status tr.delivery_applicant_contacted td.tt {color:#ff8500}
+table.form_status tr.decision_sent                td.tt {color:#F91700}
+table.form_status tr.decision_made                td.tt {color:#6cd10b}
+table.form_status tr.decision_applicant_contacted td.tt {color:#F91700}
+table.form_status tr.decision_received    td.tt {color:#6cd10b}
+table.form_status tr.fee_validation_needed    td.tt {color:#6cd10b}
+
+table.form_status tr.desc td {padding-bottom:3px;}
+
+table.form_status td         table.desc {width:100%; box-shadow: 0px 0px 3px #999; border-radius:5px;}
+table.form_status td.n_a     table.desc {border:2px solid #cecece; background-color:#fff;}
+table.form_status td.closed  table.desc {border:2px solid #cecece; background-color:#eee;}
+table.form_status td.pending table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td         table.desc td {padding:10px;}
+table.form_status td.postapp_expected_withdrawn  table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.postapp_expected_received table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.delivery_applicant_contacted table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.requested table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.notified table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.confirmed table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.paid table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.taken   table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.book   table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.no_appointment   table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.postapp_sent   table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.deferred   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.incomplete   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.skipped   table.desc {border:2px solid #6cd10b; background-color:#fff;}
+table.form_status td.expected table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.postapp_expected table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.postapp_expected_sent table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.postapp_inadmissible   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.expected_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.postapp_expected_proceeded   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.expected_not_come   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.postapp_expected_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.expected_done    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.notified_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.confirmed_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.paid_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.transferred_error   table.desc {border:2px solid #ff2522; background-color:#fff;}
+table.form_status td.decision_sent                table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.decision_made    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.decision_applicant_contacted table.desc {border:2px solid #ff7522; background-color:#fff;}
+table.form_status td.decision_received    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.done    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.not_required    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.received    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.application_received    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.postapp_done    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.postapp_expected_done    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+table.form_status td.postapp_received    table.desc {border:2px solid #6cd10b; background-color:#fff; color:#000;}
+
+table.form_status table.desc td.id {padding-right:1em;}
+
+table.form_status a.link {border:1px solid #e99; background-color:#dd4332; text-decoration:none; font-size:80%; color:#fff; padding:0 2px}
+table.form_status a.link:hover {background-color:#f00; border:1px solid #fdd;}
+
+/* comment */
+a.comment {cursor:default; color:#c00;}
+a.comment div.comment_content {display:none;}
+a.comment:hover {border:0; position:relative; z-index:500; text-decoration:none;}
+a.comment:hover div.comment_content {display:block; position:absolute; top:20px; left:-25px; padding:5px; font-weight:normal; color:#000; border:1px solid #888; background:#ffc; width:150px;}
+a.comment:hover div.comment_content em {position:absolute; left:20px; top:-6px; width:11px; height:6px; background-color:#fff; display:block; font-size:1px;}
+
+/* help */
+table.help_nav {margin-top:3em; width:100%; border-top:2px solid #eee}
+table.help_nav td {vertical-align:top; padding-top:3px}
+table.help_nav td.l {width:40%; text-align:left}
+table.help_nav td.c {width:20%; text-align:center}
+table.help_nav td.r {width:40%; text-align:right}
+
+/* printable */
+div.printable {border: 2px dotted #aaa; padding:3px 7px; margin-bottom:5px; background:white}
+div.printing {border: 2px dotted #aaa; padding:3px 7px; margin-bottom:5px; background:red}
+
+/* toggler */
+a.toggler {padding-left:16px; min-width:12px; min-height:12px; background-position:left center; background-repeat:no-repeat;}
+a.toggler_closed {background-image:url('../img/icon/plus_button.gif');}
+a.toggler_closed:hover {background-image:url('../img/icon/plus_button_hover.gif');}
+a.toggler_open {background-image:url('../img/icon/min_button.gif');}
+a.toggler_open:hover {background-image:url('../img/icon/min_button_hover.gif');}
+
+/* forms */
+table.field {width:100%; margin-top:0}
+table.field td {vertical-align:top; padding:5px 3px;}
+table.field td.label {white-space:nowrap; width:252px; padding-top:0.6em; text-align:right}
+table.field td.label div.label {white-space:nowrap;font-weight:bold; color:#444;}
+table.field td.label em {font-weight:bold; color:#f44; text-transform:uppercase}
+table.field td.field {white-space:nowrap; width:200px}
+table.field td.field div.example {white-space:normal}
+table.field td.field div.example {color:#999}
+
+table.field td.help {color:#999; text-align:left;}
+table div.active_help {position:absolute; width:158px; display:none;
+  background: white url('../img/icon/question_mark.gif') no-repeat right top; color:black;
+  border:5px solid #eee; padding:10px 15px 10px 10px; margin-top:-15px; font-size:0.8em;}
+
+table.mouseover {background:#eee}
+table.mouseover div.active_help {display:block;}
+table.desc table.mouseover {background:#ffe2a7}
+table.desc table.mouseover div.active_help {border-color:#ffe2a7}
+table.hideable td.label div.label{font-weight:normal;}
+
+#main_form p {text-align:left; width:600px; margin:1em auto 1em auto}
+table.field textarea {width:200px; height:70px;}
+
+input.uppercase {text-transform:uppercase;}
+
+input.confirm {font-weight: bold}
+input.error {color:red; font-weight: bold}
+
+.mistake {border:1px solid red;}
+.mistake_father {border:1px solid red;}
+div.echo_mistake {color:red; float:right; position:absolute;}
+
+div.faq_topics_dl a.FAQ_top {float:right; text-decoration:none; font-weight:normal; font-size:80%}
+
+address {font-style:normal}
+
+a.phi_link {position:absolute !important;text-decoration:none !important;margin-left:-15px !important;font-size:80% !important;color:#78c !important;background:none !important;}
+a.phi_link_no_absolute {text-decoration:none !important; margin-left: 3px !important;font-size:80% !important;color:#78c !important;background:none !important;}
+.cache_mark {position:absolute !important;text-decoration:none !important;margin-left:-5px !important;margin-top:1px !important;font-size:80% !important;color:#78c !important;background:none !important;}
+
+
+/* calendar picker */
+.calendar_date_select {color:white; border:#777 1px solid; display:block; width:195px; z-index: 15000;}
+/* this is a fun ie6 hack to get drop downs to stay behind the popup window.  This should always be just underneath .calendar_date_select */
+iframe.ie6_blocker {position: absolute; z-index: 999;}
+.calendar_date_select thead th {font-weight:bold; background-color: #eee; border-top:1px solid #999; border-bottom:1px solid #888; color: #000 !important;}
+.calendar_date_select .cds_buttons {background-color: #eee;}
+.calendar_date_select .cds_footer {background-color: #eee; padding:3px; font-size:12px; text-align:center; color:#000;}
+.calendar_date_select table {margin: 0; padding: 0;}
+.calendar_date_select .cds_header {background-color: #eee; border-bottom: 1px solid #eee; text-align:center;}
+.calendar_date_select .cds_header span {font-size:15px; color: black; font-weight: bold;}
+.calendar_date_select select {font-size:11px;}
+.calendar_date_select .cds_header a:hover {color: white;}
+.calendar_date_select .cds_header a {width:22px; height:20px; text-decoration: none; font-size:14px; color:black !important;}
+.calendar_date_select .cds_header a.prev {float:left;}
+.calendar_date_select .cds_header a.next {float:right;}
+.calendar_date_select .cds_header a.close {float:right; display:none;}
+.calendar_date_select .cds_header select.month {width:90px;}
+.calendar_date_select .cds_header select.year {width:61px;}
+.calendar_date_select .cds_buttons a {color: black; font-size: 9px;}
+.calendar_date_select td {font-size:12px; width: 24px; height: 21px; text-align:center; vertical-align: middle; background-color: white;}
+.calendar_date_select td.weekend {background-color: #eee;}
+.calendar_date_select td div {color: black; font-weight: bold;}
+.calendar_date_select td div.other {color: #ccc;}
+.calendar_date_select td.selected div {color:black;}
+.calendar_date_select tbody td {border-bottom: 1px solid #aaa;}
+.calendar_date_select td.selected {background-color:#7f7f7f;}
+.calendar_date_select td:hover {background-color:#aaa;}
+.calendar_date_select td.today {border: 1px dashed #E5876C;}
+.calendar_date_select td.disabled div {color: #999;}
+.at_sign {color:#000;}
+
+#blackout {z-index:10; background:black; opacity:0.7; position: fixed; top:0px; left:0px; right:0px; bottom:0px; cursor:pointer;}
+
+/* quiz_purpose */
+.quiz_purpose dt {margin-top:10px;}
+.quiz_purpose dt .toggler {font-weight:bold;}
+.quiz_purpose dd {margin:0;}

@@ -1,0 +1,1429 @@
+// COMMON //
+var new_href = "";
+var Browser = {
+  ua: navigator.userAgent,
+  init: function() {
+    this.match = /(Firefox)\/([\w.]+)/.exec(this.ua) ||
+                 /(Opera)(?:.*Version)?[ \/]([\w.]+)/.exec(this.ua) ||
+                 /(Chrome)\/([\w.]+)/.exec(this.ua) ||
+                 /(MSIE) ([\w.]+)/.exec(this.ua) ||
+            /(Safari)/.exec(this.ua) || [];
+    this.Name = this.match[1] || "Unknown browser";
+    this.Version = this.match[2] || "Unknown version";
+  }
+};
+Browser.init();
+
+function refresh_captcha(dom) {
+    ajaxRequest('ajax/captcha.php', {
+        'method': 'post',
+        onComplete: function(res) {
+            var response = $H(res.responseText.evalJSON());
+            var image_src = response.get('image_src');
+            document.getElementById('action_captcha').src = image_src;
+        }
+    });
+}
+
+function jsError(str, option) {
+  if (JS_INSTANCE_TYPE == 'dev' && option != 'NOALERT') {
+    alert('JSERROR: ' + str);
+  }
+  window.setTimeout(function() { 
+    throw new Error(str);
+  }, 1);
+}
+
+function inspectObject(obj){
+  var w = open("","","resizable=yes,scrollbars=yes");
+  if (typeof(obj) == "string") obj = $(obj);
+  var s = "<h1>DISPLAY "+obj+" "+obj.name+" "+typeof(obj)+" FOR DEBUG</h1>";
+  var count = 0;
+  for (i in obj) {
+    if (count++ > 500) break;
+    co = obj[i];
+    s+=i+" : "+co+"<br />";
+    if (arguments[1] && (arguments[1].indexOf("SEEINSIDE")>-1) && typeof(co) == "object"){
+       s+="<blockquote>";
+            for (j in co) {
+                s += j + " : <br />";
+            }
+       s+="</blockquote>";
+    }
+  }
+  w.document.write(s);
+  return;
+}
+
+function initInputs() {  
+  var d = $('main_form');
+  if (!d) return false;
+  d.getElementsBySelector('input.check_alphanum').each(function(e) {
+    Event.observe(e,'change',checkInput.bindAsEventListener(e),false);
+  });
+  return true;
+}
+
+function checkInput() { 
+  this.value = this.value.toUpperCase();
+  this.value = this.value.replace(/[^A-Z0-9 .\'+-]/ig,'');
+}
+
+function initOverables(){
+  var mouseoverables = $$('.overable');
+  mouseoverables.each(function(e){
+    if (e.hasClassName('initialised')) {
+      return false;
+    }
+    e.addClassName('initialised');
+        Event.observe(e, 'mouseover', function(f) {
+            Element.addClassName(e, 'mouseover');
+        }, false);
+        Event.observe(e, 'mouseout', function(f) {
+            Element.removeClassName(e, 'mouseover');
+        }, false);
+  });
+}
+
+function initBody() {
+
+  initOverables();
+  
+  var focusables = $$('input','textarea','select');
+  focusables.each(function(e){
+    Event.observe(e,'focus',function(f) {
+      Element.addClassName(e.up('.focusable'),'focus_highlight');
+      if (e.type == 'button' || e.type == 'submit') return;
+      var pos = Position.page(e);
+      if ((window.innerHeight-pos[1])<50) {
+        window.scrollBy(0, 400);
+      }
+    },false);
+    Event.observe(e,'blur',function(f) {
+      Element.removeClassName(e.up('.focusable'),'focus_highlight');
+    },false);
+  });
+  
+  if (typeof(form2beFocused) != 'undefined') {
+    if (!("autofocus" in document.createElement("input"))) {
+      $(form2beFocused).focusFirstElement();
+    }
+  }
+ 
+  initMultisel();
+  initInputs();
+  initToggleLinks();
+} 
+
+function extractHashIdFromLink(link) {
+  var id = '';
+  var matches = link.hash.match(/^#(.+)$/);
+  if (matches && matches[1]) {
+    id = matches[1];
+  }
+  return id;
+}
+
+function initToggleLinks(options) {
+  options = (options == undefined) ? {} : options;
+  var defaultOptions = {
+    force : false,
+    parent_elem : false
+  }
+
+  for (var option in defaultOptions) {
+    options[option] = options.hasOwnProperty(option) ? options[option] : defaultOptions[option];
+    
+  }
+
+  var links = $$('a.toggler');
+  if (options['parent_elem']) {
+    links = $$(options['parent_elem'] + ' a.toggler');
+  }
+
+  links.each(function(link) {
+    if (link.hasClassName('initialised') && !options['force']) {
+      return false;
+    }
+    link.addClassName('initialised');
+    if (!$(link).onclick) {
+            $(link).onclick = function() {
+                return false;
+            };
+    }
+    link.addClassName('toggler_closed');
+    var static_div = extractHashIdFromLink(link);
+    if (static_div && $(static_div) != null) {
+      $(static_div).hide();
+    }
+    link.observe('click', function(event) {
+      var link = Event.element(event);
+      var static_div = extractHashIdFromLink(link);
+      if (static_div && $(static_div) != null) {
+        $(static_div).toggle();
+      }
+      if (!static_div) {
+        var ajax_target = $('opendiv_'+link.id);
+                if (!ajax_target) {
+                    ajax_target = $('opendiv');
+                }
+                if (!ajax_target) {
+                    return;
+                }
+        if (ajax_target.empty()) {
+          ajax_target.update(ajaxLoadingIndicator('Loading'));
+                    ajaxUpdater(ajax_target, link.href, {
+                        evalScripts: true
+                    });
+        } else {
+          $(ajax_target).update();
+        }
+      }
+      link.toggleClassName('toggler_open');
+      link.toggleClassName('toggler_closed');
+    });
+  });
+}
+
+function initForm() { 
+  var hidden_elements = $$('table.hideable');
+    hidden_elements.each(function(e) {
+        e.style.display = 'none';
+    });
+  var ActiveForm = $('ActiveForm');
+  if (!ActiveForm) return;
+  // launch onclick on each active fields
+  var inputs = ActiveForm.getElementsByTagName('input');
+  for (var i=0, len = inputs.length; i < len; i++) {
+    var f = inputs[i];
+    if (!f.onclick) continue; // reject if not active 
+    if (f.type=='radio' && !f.checked) continue; // reject if not checked radio button 
+    if (f.type=='button') continue; // reject the buttons 
+    f.onclick() ;
+  }
+}
+
+document.observe("dom:loaded", initForm);
+document.observe("dom:loaded", initBody);
+
+function extract_this(o, table_attributes) {
+  var content = $(o).up('div');
+  var clone = content.cloneNode(true);
+  table_attributes = $H(table_attributes || {});
+  $(clone).select('.noextract').each( function(element) {
+      element.remove();
+  });
+  $(clone).update($(clone).innerHTML.replace(/<\/?a[^>]*>/gmi,'').replace(/<\/?em[^>]*>/gmi,'')); // remove links and emphasis (used as bars)
+  $(clone).update($(clone).innerHTML.replace(/<\/?img[^>]*>/gmi,'')); // remove images
+  $(clone).select('table').each(function (t) { 
+    t.cellPadding = table_attributes.get("cellpadding") != null ? table_attributes.get("cellpadding") : 5; 
+    t.border = table_attributes.get("border") != null ? table_attributes.get("border") : 1; 
+  });
+  $(clone).select('td').each(function (t) {
+    if (t.innerHTML.stripTags().blank()) t.update('&nbsp;'); // fill empty tds so border is displayed
+  });
+  var Pwin = window.open('','WinName'+new Date().getMilliseconds(),'toolbar=no,menubar=yes,scrollbars=yes,resizable=yes');
+  var counter = 0; 
+    while (Pwin.document.body == null) {
+        if (counter++ > 10000) return;
+    }
+  Pwin.document.body.innerHTML = ''; 
+  try {
+    Pwin.document.body.appendChild(clone);
+  } catch (e) {
+    var clonedContent = Pwin.document.createElement('div');
+    clonedContent.innerHTML = content.innerHTML;
+    Pwin.document.body.appendChild(clonedContent);
+  }
+  Pwin.focus()
+  return false;
+}
+
+function extract_column(o,col) {    //TTJ: Extract content on a column like omega link
+  //get the table lists
+  var content = $(o).up('.lists_container');
+  var clone = content.cloneNode(true);
+  $(clone).select('.noextract').each( function(element) {
+    element.remove();
+  });
+  $(clone).update($(clone).innerHTML.replace(/<\/?a[^>]*>/gmi,'').replace(/<\/?em[^>]*>/gmi,''));   // remove links and emphasis (used as bars)
+  $(clone).update($(clone).innerHTML.replace(/<\/?img[^>]*>/gmi,''));                               // remove images
+    $(clone).select('table').each(function(t) {
+        t.cellPadding = 5;
+        t.border = 1;
+    });
+  $(clone).select('td.content').each(function (t,index) {
+    if (t.innerHTML.stripTags().blank()) t.update('&nbsp;'); // fill empty tds so border is displayed
+      // var content_list = $(t).up('.lists_container');
+  });
+  var lists = $(clone).down('table.lists');
+
+  //extract headers
+  var header = '';
+  var trs = $(lists).down('tr');
+  var clone_header = trs.cloneNode(true);
+  $(clone_header).select('th').each(function(th,index){
+    if (index != col) return;
+    header += "<tr><th>" + th.innerHTML + "</th></tr>";
+  });
+  
+  //extract rows
+  var list = '<tr>';
+  var lists = $(content).down('table.lists');
+  $(lists).select('tr').each(function(tr,index) {
+    var tds = $(tr).select('td');
+    $(tds).each(function(td,index) {
+      if (index != col) return;
+      list += "<tr><td>" + td.innerHTML + "</td></tr>"; 
+    });
+  });
+
+  //building html
+  var text = '<table class="lists" style="border: 1px double black;" border="1" cellpadding="3" cellspacing="0">' + header + list + "</table>";
+  $(clone).update(text);
+
+  //open popup
+  var Pwin = window.open('','WinName'+new Date().getMilliseconds(),'toolbar=no,menubar=yes,scrollbars=yes,resizable=yes');
+  var counter = 0; 
+    while (Pwin.document.body == null) {
+        if (counter++ > 10000) return;
+    }
+  Pwin.document.body.innerHTML = ''; 
+  Pwin.document.body.appendChild(clone);
+  Pwin.focus()
+  return false;
+}
+
+function print_this(o) {
+    if (getUrlParam('f_id') !== '') {
+        id = getUrlParam('f_id');
+    } else if (getUrlParam('fg_id') !== '') {
+        id = getUrlParam('fg_id');
+    } else {
+    id = getUrlParam('id');
+  }
+  if (!$(o).hasClassName('nolog')) {
+    ajaxRequest('../admin/ajax/logger.php', {
+      method: 'get', 
+            parameters: {
+                'referer': document.location.href,
+                'ul_type': 'print',
+                'ul_button': o.id,
+                'id': id,
+                'date': new Date().getTime(),
+            }, //'referer='+document.location.href+'&ul_type=print&ul_button='+o.id+'&date='+new Date().getTime(),
+            onFailure: function(request) {
+                alert(request.responseText);
+            }
+    });
+  };
+  if ( $(o) && $(o).hasClassName('printable') ) {
+    if ( $(o).getStyle('display') ) {
+      $(o).setStyle({
+        'display': 'block'
+      });
+    }
+    var content = $(o);
+  } else {
+    var content = $(o).up('div.printable');
+  }
+  var clone = content.cloneNode(true);
+  $(clone).select('.noprint').each( function(element) {
+      element.hide();
+    });
+  var Pwin = window.open('','WinName','toolbar=no,menubar=yes,scrollbars=yes,resizable=yes');
+    var windowBasicHTMLstructure =
+        "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>\n" +
+        "<html>\n" +
+        "<head></head>\n" +
+        "<body>" +
+        "</body>\n" +
+        "</html>";
+    Pwin.document.write(windowBasicHTMLstructure);
+ 
+  var counter = 0; 
+    while (Pwin.document.body == null) {
+        if (counter++ > 10000) return;
+    }
+
+  Pwin.document.body.innerHTML = ''; 
+  var buttons = Pwin.document.createElement('div');
+  buttons.innerHTML = "<center class='noprint' style='background:#dcdcdc;padding:1em;'><input type='button' style='font-size:120%' value='"+translate('print')+"' onclick='window.print()' />  <input type='button' style='font-size:120%' value='"+translate('close')+"' onclick='window.close()' /></center>";
+  buttons.innerHTML+= "<style type='text/css'>"+
+           ".noprint {  } "+
+           "table.lineborders th, table.lineborders td {border-bottom:1px solid #aaa; }"+
+           "table.leftalign th, table.leftalign td {text-align: left; }"+
+           "</style>";
+  buttons.innerHTML+= "<style type='text/css' media='print'>.noprint { display:none }</style>";
+ 
+  Pwin.document.body.appendChild(buttons);
+  try {
+    Pwin.document.body.appendChild(clone);
+  } catch (e) {
+    var clonedContent = Pwin.document.createElement('div');
+    clonedContent.innerHTML = content.innerHTML;
+    Pwin.document.body.appendChild(clonedContent);
+  }
+
+    // We need to put delay before print, otherwise barcode does not display. This is a native defect in chrome.
+    Pwin.document.close();
+    Pwin.focus();
+    Pwin.document.body.onload = function() {
+        // continue to print
+        Pwin.print();
+        Pwin.close();
+    };
+
+  return false;
+}
+
+function my_pop(e,v,t) {
+  s = 'test';
+  t = t.split('|');
+  var cond = false;
+  for(var i = 0; i < t.length; i++) { 
+    if (v == t[i]) cond = true;
+  }
+  var table = $('tbl_'+e);
+  if (cond) {
+    table.style.display='';
+  } else {
+    e.value = '';
+    table.style.display='none';
+    table.getElementsBySelector('input','select','textarea').each(
+    function(i) {
+      if (i.value) i.value = '';
+      if (i.checked) i.checked = false;
+      s+="\n"+i.name;
+    });
+  }
+}
+
+function remove_picture(id) {
+  var old_div = $('pic_'+id);
+  var new_div = $('wait_'+id);
+  old_div.style.display='none';
+  new_div.style.display='';
+}
+
+function ajaxLoadingIndicator(process_descr) {
+  return '<img src="/img/icon/loading_small.gif" alt="" width="16" height="16" /> ' + translate(process_descr) + '...';
+}
+
+function change_place(f_id, type, button, opts) {
+  if (opts == undefined) opts = {};
+  if (opts['async'] == undefined) opts['async'] = true;
+  if ($("ajax_form_place"))  $("ajax_form_place").update(ajaxLoadingIndicator('Updating'));
+  if (!button) {
+    button = '';
+  }
+  var url  = 'action.php?process=update&what=f_place&f_id='+f_id+'&button='+button+'&type='+type+'&_sid='+secret_id;
+  var tg   = 'ajax_form_place';
+    var pars = {
+        view: tg,
+        time: new Date().getTime()
+    };
+
+    var place_updater = ajaxUpdater(tg, url, {
+        asynchronous: opts['async'],
+        method: 'post',
+        parameters: pars,
+    onSuccess: function(request){  },
+        onFailure: function(request) {
+            alert(request.responseText);
+        },
+    evalScripts: true
+  });
+}
+
+function check_representative_info(form){
+  var surname = form.fi_representative_surname.value;
+  var givenname = form.fi_representative_givenname.value;
+  var gender = $$('input:checked[type=radio][name=fi_representative_gender]').pluck('value');
+  var id_type = $$('input:checked[type=radio][name=fi_representative_id_type]').pluck('value'); 
+  var id_num = form.fi_representative_id_number.value;
+  if (surname && givenname && gender && id_type && id_num) {
+    return true; 
+  } else {
+    alert('Some fileds are empty.');
+    return false;
+  }
+}
+
+function change_place_group(f_id_list, type, button, value) {
+  if (!value) {
+    value = '';
+  }
+  var applications = f_id_list.split(',');
+  var count_applications = applications.length;
+  var confirm_text = '';
+  //MSC20100317: not so clean, to be improved when handling js translations
+  if (type == 'counter' && button == 'inside') {
+    confirm_text = translate('confirm_multi_hello')+' (x '+count_applications+')';
+  } else if (type == 'counter' && button == 'outside') {
+    confirm_text = translate('confirm_multi_goodbye')+' (x '+count_applications+')';
+  } else if (type == 'center' && button == 'outside') {
+    confirm_text = translate('confirm_multi_change_place')+' (=> out center x '+count_applications+')';
+  }
+  var confirm_multi_change_place = confirm(confirm_text);
+  if (confirm_multi_change_place && count_applications >= 1) {
+    for (var i = 0; i < applications.length; i ++) {
+      var form = applications[i];
+      change_place(applications[i], type, button, value);  
+    }
+  }
+}
+
+function redirect(url) {
+  window.location = url;
+}
+
+
+// POPUP //
+
+Control.Modal.defaultOptions.overlayOpacity = 0.6;
+Control.Modal.defaultOptions.iframeshim = false;
+Control.Modal.defaultOptions.className = 'modal_container';
+
+IPAPopup = Class.create(Control.Modal, {
+  initialize: function($super,container,options) {
+    $super(container,Object.extend(Object.clone(IPAPopup.defaultOptions),options || {}));
+  }
+});
+Object.extend(IPAPopup, {
+  defaultOptions: { 
+    overlayOpacity: 0.6,
+    iframeshim: false,
+    className: 'modal_container'
+  }
+});
+
+function popupFillsForm(f, vt, tp) {
+  $('ActiveForm').f_visa_type.value = f.fg_visa_type.value;
+  $('ActiveForm').f_trav_purpose.value = f.fg_trav_purpose.value;
+  $('quiz_purpose').toggle();
+  Control.Modal.close();
+  $('vt_text').update(vt);
+  $('tp_text').update(tp);
+//  if (refresh) {
+//    $('div_new_application').update('Updating...');
+//    new Ajax.Updater("div_new_application","form.php?f_id=NEW&fg_id="+fg_id+"&f_visa_type="+f.f_visa_type.value+"&f_trav_purpose="+f.f_trav_purpose.value, {evalScripts: true});
+//    initInputs();
+//  }
+  if ($('tbl_fi_circulation')) {
+    if (f.has_circulation.value != 'true') {
+      $('tbl_fi_circulation').hide();
+    } else {
+      $('tbl_fi_circulation').show();
+      if ($('fi_circulation_f')) $('fi_circulation_f').checked = true;
+    }
+  }
+  if ($('tbl_fi_cela_id')) {
+    if (f.require_cela.value != 'true') {
+      $('tbl_fi_cela_id').hide();
+    } else {
+      $('tbl_fi_cela_id').show();
+    }
+  }
+  if ($('main_form')) $('main_form').scrollTo();
+  return false;   // prevents form auto-submit
+}
+
+function ajaxUpdater(container, url, options) {
+  options = options || {};
+  var param = options.parameters || '';
+  if (Object.isString(param)) {
+    if (param.include('process=')) {
+      options.parameters += '&_sid=' + secret_id;
+//      options.set('parameters', param + '&_sid=' + secret_id); 
+    }
+  } else if (Object.isArray(param)) {
+    jsError('options should not be an array');
+  } else {
+    param = $H(param);
+    if (param.get('process')) {
+      param.set('_sid', secret_id);
+      options.parameters = param;
+    }
+  }
+  if (url.include('process=')) {
+    url += "&_sid=" + secret_id;
+  }
+  new Ajax.Updater(container, url, options);
+}
+
+function ajaxRequest(url, options) {
+  options = options || {};
+  var param = options.parameters || '';
+  if (Object.isString(param)) {
+    if (param.include('process=')) {
+      options.parameters += '&_sid=' + secret_id;
+//      options.set('parameters', param + '&_sid=' + secret_id); 
+    }
+  } else if (Object.isArray(param)) {
+    jsError('options should not be an array');
+  } else {
+    param = $H(param);
+    if (param.get('process')) {
+      param.set('_sid', secret_id);
+      options.parameters = param;
+    }
+  }
+  if (url.include('process=')) {
+    url += "&_sid=" + secret_id;
+  }
+  new Ajax.Request(url, options);
+}
+
+function hashJSON(json) {
+  if (Object.isString(json) && json.isJSON()) {
+    return $H(json.evalJSON(true));
+  }
+//  jsError("hashJSON() - not JSON: " + json);
+  return $H({});
+}
+
+function getUrlParam(name) {
+  var params = window.location.search.parseQuery();
+  if (params[name]) return params[name];
+  return '';
+}
+
+function calculate_fees(form) {
+  $('comment').next('center').down('input[type=submit]').disable();
+  var fees = 0;
+  form.select('table.form_line td.id').each(function(item) {
+    if (item.previous('td[class=checkbox]').down('input[type=checkbox]').checked) {
+      fees += parseFloat(item.next('td').innerHTML); 
+    }
+  });
+  $('comment').previous('ul').select('li').each(function(item) {
+    if (item.down('input[name=result]')) {
+      item.down('input[name=result]').value = fees;
+    }
+  });
+  $('comment').next('center').down('input[type=submit]').enable();
+}
+
+function fill_f_id_list(form) {
+  $('comment').next('center').down('input[type=submit]').disable();
+  var f_id_list = [];
+  form.action_forms_in_group.value = '';
+  form.select('table.form_line td.id').each(function(item) {
+    if (item.previous('td[class=checkbox]').down('input[type=checkbox]').checked) {
+      f_id_list.push(item.innerHTML);
+    }
+  });
+  f_id_list.uniq();
+  f_id_list.each(function(id) {
+    form.action_forms_in_group.value += id + ",";
+  });
+  $('comment').next('center').down('input[type=submit]').enable();
+}
+
+function ajaxCall(ajax_response_target,vars,modal_url) { 
+  if (modal_url == undefined) {
+    modal_url = 'ajax/confirm_action.php';  
+  }
+  if (typeof(vars) == "string") {
+    url = vars 
+  } else {
+    var tmp = $H($(vars).serialize(true));
+        tmp.each(function(el) {
+            el.value = escape(el.value);
+        });
+    url = 'action.php?'+tmp.toQueryString();
+  }
+  var n = new Date();
+    var pars = {
+        url: url,
+        issuer_view: getUrlParam('issuer_view'),
+        target: ajax_response_target,
+        time: n.getTime(),
+        _sid: secret_id
+    };
+  var wl = '' + window.location;
+  if (wl.toQueryParams().as_u_id) {
+    pars.as_u_id = wl.toQueryParams().as_u_id;
+    pars.url += '&as_u_id=' + wl.toQueryParams().as_u_id;
+  }
+  
+    var m = new Control.Modal(new Element('a', {
+        href: modal_url
+    }), {
+    parameters: pars,
+    indicator: $('ajax_modal_loading'),
+        afterClose: function() {
+            if (this.container) this.container.remove();
+        }
+  });
+  m.open();
+  return true;
+}
+
+function ajaxPostForm(form,process,reload,options,disable) {
+  options = options || {};
+  disable = disable || {};
+  var f = $(form);
+    f.getElements('.mistake').each(function(e) {
+        e.removeClassName('mistake')
+    });
+  if (!process) {
+    if (form.process && form.process.value) {
+      process = form.process.value;
+    } else {
+      alert('Error AJ34v78!'); // cannot get the process for the action
+      Control.Modal.close();
+            Event.stopObserving(f, 'click', function(e) {
+                Event.stop(e)
+            }, false);
+      return;
+    }
+  }
+  if (f.ajax_form_warning && f.ajax_form_warning.value) {
+    if (!confirm(f.ajax_form_warning.value.replace(/\\n/g,'\n'))) return false;
+  }
+  f.request({
+    method: 'post', 
+        parameters: {
+            process: process,
+            reloader_timestamp: new Date().getTime(),
+            _sid: secret_id
+        },
+    onCreate: function(r) {
+      f.disable();
+      if (disable == 'false') {
+        f.enable();
+      }
+      if (f.down('.ajax_form_action')) {
+        f.down('.ajax_form_action').style.display='';
+      }
+      if (f.down('.ajax_form_error')) {
+        f.down('.ajax_form_error').style.display='none';
+      }
+    },
+    onSuccess: function(r){
+      if (Object.isFunction(options.onSuccess)) {
+        options.onSuccess(r);
+      }
+      if (f.down('.ajax_form_action')) {
+        f.down('.ajax_form_action').style.display='none';
+      }
+      if (options.onSuccessTarget) {
+        $(options.onSuccessTarget).update(r.responseText);
+      } else if (f.down('.ajax_form_result')) {
+        f.down('.ajax_form_result').style.display='';
+        f.down('.ajax_form_result').update(r.responseText);
+      } 
+      if (reload == true) {
+        document.location.href= document.location.href;
+      }
+      if (reload != true && new_href && new_href != document.location.href) {
+        document.location.href= new_href;
+      }
+      Control.Modal.close();
+      f.enable();
+    },
+    onComplete: function(r) {
+      if (Object.isFunction(options.onComplete)) {
+        options.onComplete(r);
+      }
+      if (f.down('.ajax_form_special')) {
+        //CLI comment the following 2 lines, ajax_form_special and ajax_form_error always exist together, so the error message will be duplicated when ajax go to failure.
+        //f.down('.ajax_form_special').style.display='';
+        //f.down('.ajax_form_special').update(r.responseText);
+      } else {
+        var json = hashJSON(r.responseText);
+        if (json.get("_redirect")) {
+          document.location.href = json.get("_target").replace(/&amp;/g,'&');
+        } else {
+          // CLI remove this alert because it's duplicated, same message alter twice.
+          //alert(r.responseText.replace(/\\n/g,'\n'));
+        }
+      }
+    },
+    onFailure: function(r) {
+      f.enable();
+      if (Object.isFunction(options.onFailure)) {
+        options.onFailure(r);
+      }
+      if (f.down('.ajax_form_action')) {
+        f.down('.ajax_form_action').style.display='none';
+      }
+      if (f.down('.ajax_form_error')) {
+        f.down('.ajax_form_error').style.display='';
+        f.down('.ajax_form_error').update(r.responseText);
+      } else if (r.responseText) {
+        alert(r.responseText.replace(/\\n/g,'\n'));
+      } else {
+        //CLI when delete a form, we alway get this alert, but form deleted.
+        document.location.href = document.location.href;
+        //alert('Error AJ3528'); // no error from the process
+      }
+      
+      if (window.modalAjax != null) modalAjax.close();
+    }
+  })
+  if (window.modalAjax != null) modalAjax.update('<img src="img/icon/loading.gif" alt="" width="32" height="32" />' + translate('Processing') + '...');
+}
+
+
+function ajaxFillMistakes(err) { 
+  $H(err).each(function(p) {
+    if (!$(p.key) || $(p.key).type == 'radio') {
+      $$('input[name='+p.key+']').each(function(r) {
+        r.up().addClassName('mistake');
+      });
+      return;
+    }
+    if ($(p.key)) {
+      $(p.key).addClassName('mistake');
+      if ($(p.key).up().down('.echo_mistake')) $(p.key).up().down('.echo_mistake').update(p.value);
+    }
+  });
+}
+
+Ajax.Responders.register({
+  onCreate: function() {
+    if ($('ajax_main_loading')) $('ajax_main_loading').show();
+  },
+  onComplete: function() {
+    if ($('ajax_main_loading')) $('ajax_main_loading').hide();
+  }
+});
+
+function create_modal_popup(url, option) {
+  var closeOption = true;
+  if (option == "nohide") {
+    closeOption = false;
+  }
+
+    m = new Control.Modal(new Element('a', {
+        href: url
+    }), {
+    closeOnClick: closeOption,
+    indicator: $('ajax_modal_loading'),
+        afterClose: function() {
+            if (this.container) this.container.remove();
+        }
+  });
+
+  m.open();
+}
+
+function create_modal_popup_onclick(url,elementId,option,txtElementId){
+  // if coming from autolink, we have &amp; instead of &.
+  url = url.replace(/&amp;/g,'&') + '&txtElementId=' + txtElementId;
+
+  Event.observe($(elementId),'click',function() {
+    if (typeof(m) != 'undefined') {
+      m.close();
+    }
+    create_modal_popup(url, option);
+  });
+}
+
+function clip_copy_text(text) {
+  var content = text;
+  content = "<textarea id='clipcopy' style='font-size:80%; width:700px; height:100px'>"+content+"</textarea>";
+  header = "<a class='close' onclick='Control.Modal.close()' /><img src='/img/button/close.gif' /></a>"
+  header = "<td>"+translate("Press ctrl-C to put the text below in your clipboard")+"</td><td>"+header+"</td>";
+  content = "<table border='0' cellpadding='0' cellspacing='3' class='modal'><tr>"+header+"</tr><tr><td colspan='2'>"+content+"</td></tr></table>";
+  var m = new Control.Modal(content, {
+        afterClose: function() {
+            if (this.container) this.container.remove();
+        }
+  });
+  m.open();
+  $('clipcopy').activate();
+  return;
+}
+
+function print_page(need_print, f_id) {
+  var result = '';
+  ajaxRequest('ajax/print.php', {
+    method:'post',
+    asynchronous: false,
+        parameters: {
+            'process': 'open_print_page',
+            'f_id': f_id,
+            'ul_type': 'print',
+            'ul_button': 'envelope_print_button'
+        },
+    onSuccess: function(res) {
+      if (res.responseText.isJSON()) {
+        var response = $H(res.responseText.evalJSON());
+        result = response.get('result');
+      } else {
+        result = res.responseText;
+        //error when get link.
+      }
+    }
+  });
+  if (result == 'print') {
+    print_this(need_print);
+  } else if (result == 'ask_supervisor') {
+    supervisor_confirm_popup(f_id);
+  } else {
+    alert(result);
+  }
+}
+
+function supervisor_confirm_popup(f_id) {
+  ajaxRequest('ajax/print.php', {
+    method:'post',
+        parameters: {
+            'process': 'print_envelope',
+            'f_id': f_id
+        },
+    onComplete: function(res) {
+      var header = "<a class='close' onclick='Control.Modal.close()' /><img src='/img/button/close.gif' /></a><p>Confirmation</p>";
+      var content = "<table border='0' cellpadding='0' cellspacing='0' class='modal'><tr><td class='header'>"+header+"</td></tr><tr><td>"+res.responseText+"</td></tr></table>";
+      var m = new Control.Modal(content, {
+                afterClose: function() {
+                    if (this.container) this.container.remove();
+                }
+      });
+      m.open();
+    }
+  });
+}
+
+function submit_supervisor_pwd() {
+  var id = $('as_admin_id').value;
+  var pwd = $('as_admin_id_pwd').value;
+  var result = '';
+  var message = '';
+  ajaxRequest('ajax/check_right.php', {
+    method:'post',
+    asynchronous: false,
+        parameters: {
+            'process': 'need_supervisor_confirm',
+            'right': 'multi_print_envelope',
+            'as_admin_id': id,
+            'as_admin_id_pwd': pwd
+        },
+    onComplete: function(res) {
+      if (res.responseText.isJSON()) {
+        var response = $H(res.responseText.evalJSON());
+        result = response.get('result');
+        message = response.get('message');
+      } else {
+        alert('Error occuered.');
+      }
+    }
+  });
+  if (result == 'ok') {
+    return result;
+  } else {
+    return message;
+  }
+}
+
+function select_special_destination(selected_destination, processed_destinations_list, undirectly_processed_destinations_list) {
+  var reg=new RegExp("[,]+", "g");
+  var processed_destinations = processed_destinations_list.split(reg);
+  var undirectly_processed_destinations = undirectly_processed_destinations_list.split(reg);
+  var processed = 'not processed';
+  for (var i=0; i<undirectly_processed_destinations.length; i++) {
+    if (selected_destination == undirectly_processed_destinations[i]) processed = 'undirectly processed';
+  }   
+  for (var i=0; i<processed_destinations.length; i++) {
+    if (selected_destination == processed_destinations[i]) processed = 'processed';
+  }   
+  if (processed == 'undirectly processed') {
+    create_modal_popup('popup.php?t=popup&id=special_destination_incorrect', 'nohide');
+    $('fi_trav_special_destination').value = processed_destinations[0];
+  }     
+}
+
+function initModals() {
+  $$('a.popup','a.quiz_popup').each(function(link){
+    if (!link.hasClassName('ready')) {
+      link.addClassName('ready');
+      new  Control.Modal(link, {
+                parameters: {
+                    reloader_timestamp: new Date().getTime()
+                }
+      });
+    }
+   
+  });
+}
+
+document.observe("dom:loaded", function() {
+  initModals();
+  $$('.ajax_content').each(function(d) {
+    var evalJS = true;
+    var url = d.title;
+    if (url != '') {
+      d.update(ajaxLoadingIndicator('Loading'));
+      if ($(d).hasClassName('ajax_no_js')) evalJS = false;
+            ajaxUpdater(d, url, {
+                evalScripts: evalJS,
+                onComplete: function(req) {
+                    d.title = '';
+                }
+            });
+    }
+  });
+ 
+  if ($('ajax_main_loading')) $('ajax_main_loading').hide();
+});
+
+
+// autoform functions //
+
+function dependency_f_pers_occupation() {
+  alert($('f_pers_occupation').value);
+  $('dependency_f_pers_occupation').update($('f_pers_occupation').value);
+    ajaxUpdater('dependency_f_pers_occupation', 'form_filter.php?f_id=NEW&f_pers_occupation=' + $('f_pers_occupation').value, {
+        evalScripts: true
+    });
+}
+
+function handleSubmit(mode) {
+  var el = $('ActiveForm').getElements();  
+  for (var i = 0; i < el.length; i ++) {
+    if (el[i].type == 'submit' && mode == 'disable') el[i].disable();
+    if (el[i].type == 'submit' && mode == 'enable') el[i].enable();
+  }
+}
+
+
+// DATES //
+
+function dates_dz(begin, end) {
+  if ($(begin).value != '' && $(end).value != '' ) {
+    if (compareDates(begin, end, '>')) {
+      handleSubmit('enable');
+      return true;  
+    } else {
+      alert(translate('date_incorrect'));
+      handleSubmit('disable');
+      return false;
+    }
+  } else {
+    return true;  
+  }
+}
+
+function compareDates(begin, end, op) {
+  var beginDate     = $(begin).value; 
+  var endDate       = $(end).value;
+  
+  if (beginDate != '' && endDate != '') {
+    var arr_beginDate = beginDate.split('-');
+    var arr_endDate   = endDate.split('-');
+    var myBeginDate   = new Date();
+    var myEndDate     = new Date();
+    myBeginDate.setFullYear(arr_beginDate[0], arr_beginDate[1] - 1, arr_beginDate[2]);
+    myEndDate.setFullYear(arr_endDate[0], arr_endDate[1] - 1, arr_endDate[2]);
+    if (op == '>') {
+            if (myBeginDate > myEndDate) {
+                return false;
+            } else {
+                return true;
+            }
+    } else if (op == '>=') {
+            if (myBeginDate >= myEndDate) {
+                return true;
+            } else {
+                return false;
+            }
+    } 
+  }
+}
+
+//function checkAge(birth_date, today, minor_limit) {
+//  current_age = calculateAge(birth_date, today);
+//  if (current_age < minor_limit) {
+//    alert(translate('need_accompany'));
+//    return false;
+//  } else {
+//    return true;
+//  }
+//}
+
+function calculateAge(birthdate, today) {
+    birthday_details = birthdate.split('-');
+    today_details = today.split('-');
+    birthdate = new Date(birthday_details[0], birthday_details[1], birthday_details[2]);
+    now = new Date(today_details[0], today_details[1], today_details[2]);
+    var current_year =  now.getFullYear();
+    var current_month = now.getMonth();
+    var current_date =  now.getDate();
+    var year_diff  = current_year - birthday_details[0];
+    var month_diff = current_month -birthday_details[1];
+    var day_diff   = current_date - birthday_details[2];
+
+    if (month_diff < 0) year_diff--;
+    else if ((month_diff == 0) && (day_diff < 0)) year_diff--;
+    return year_diff;
+}
+
+function checkDateValidity(completeDate, checkTime, additionalCheck) {
+  var isDateValid = false;
+  var additionalCheckOK = true;
+  completeDate = completeDate.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+  if(checkTime && /^\d{4}-\d{2}-\d{2} \d{2}\:\d{2}$/.test(completeDate)) {
+    var dateFilled = (completeDate.split(' '))[0];
+    var timeFilled = (completeDate.split(' '))[1];
+    var dateParts = dateFilled.split('-');
+    dateParts[1]-=1;//January == 0
+    var timeParts = timeFilled.split(':');
+    var realDate = new Date(dateParts[0], dateParts[1], dateParts[2], timeParts[0], timeParts[1]);
+    isDateValid = (parseInt(dateParts[0], 10) == realDate.getFullYear(), 10) && (parseInt(dateParts[1], 10) == realDate.getMonth()) && (parseInt(dateParts[2], 10) == realDate.getDate()) && (parseInt(timeParts[0], 10) == realDate.getHours()) && (parseInt(timeParts[1], 10) == realDate.getMinutes());
+  } else if (checkTime == false && /^\d{4}-\d{2}-\d{2}$/.test(completeDate)) {
+    var dateParts = completeDate.split('-');
+    dateParts[1]-=1;//January == 0
+    var realDate = new Date(dateParts[0], dateParts[1], dateParts[2]);
+    isDateValid = (parseInt(dateParts[0], 10) == realDate.getFullYear(), 10) && (parseInt(dateParts[1], 10) == realDate.getMonth()) && (parseInt(dateParts[2], 10) == realDate.getDate());
+  }
+  //MSC20090615: useful mainly for date with time. could be improved.
+  if (additionalCheck == 'future' && realDate < (new Date())) additionalCheckOK = false;
+  if (additionalCheck == 'past'   && realDate > (new Date())) additionalCheckOK = false;
+
+  return isDateValid && additionalCheckOK;
+}
+
+
+/*
+ * Date Format 1.2.2
+ * (c) 2007-2008 Steven Levithan <stevenlevithan.com>
+ * MIT license
+ * Includes enhancements by Scott Trenda <scott.trenda.net> and Kris Kowal <cixar.com/~kris.kowal/>
+ *
+ * Accepts a date, a mask, or a date and a mask.
+ * Returns a formatted version of the given date.
+ * The date defaults to the current date/time.
+ * The mask defaults to dateFormat.masks.default.
+ */
+var dateFormat = function () {
+  var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
+    timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
+    timezoneClip = /[^-+\dA-Z]/g,
+    pad = function (val, len) {
+      val = String(val);
+      len = len || 2;
+      while (val.length < len) val = "0" + val;
+      return val;
+    };
+
+  // Regexes and supporting functions are cached through closure
+  return function (date, mask, utc) {
+    var dF = dateFormat;
+
+    // You can't provide utc if you skip other args (use the "UTC:" mask prefix)
+    if (arguments.length == 1 && (typeof date == "string" || date instanceof String) && !/\d/.test(date)) {
+      mask = date;
+      date = undefined;
+    }
+
+    // Passing date through Date applies Date.parse, if necessary
+    date = date ? new Date(date) : new Date();
+    if (isNaN(date)) throw new SyntaxError("invalid date");
+
+    mask = String(dF.masks[mask] || mask || dF.masks["default"]);
+
+    // Allow setting the utc argument via the mask
+    if (mask.slice(0, 4) == "UTC:") {
+      mask = mask.slice(4);
+      utc = true;
+    }
+
+    var _ = utc ? "getUTC" : "get",
+      d = date[_ + "Date"](),
+      D = date[_ + "Day"](),
+      m = date[_ + "Month"](),
+      y = date[_ + "FullYear"](),
+      H = date[_ + "Hours"](),
+      M = date[_ + "Minutes"](),
+      s = date[_ + "Seconds"](),
+      L = date[_ + "Milliseconds"](),
+      o = utc ? 0 : date.getTimezoneOffset(),
+      flags = {
+        d:    d,
+        dd:   pad(d),
+        ddd:  dF.i18n.dayNames[D],
+        dddd: dF.i18n.dayNames[D + 7],
+        m:    m + 1,
+        mm:   pad(m + 1),
+        mmm:  dF.i18n.monthNames[m],
+        mmmm: dF.i18n.monthNames[m + 12],
+        yy:   String(y).slice(2),
+        yyyy: y,
+        h:    H % 12 || 12,
+        hh:   pad(H % 12 || 12),
+        H:    H,
+        HH:   pad(H),
+        M:    M,
+        MM:   pad(M),
+        s:    s,
+        ss:   pad(s),
+        l:    pad(L, 3),
+        L:    pad(L > 99 ? Math.round(L / 10) : L),
+        t:    H < 12 ? "a"  : "p",
+        tt:   H < 12 ? "am" : "pm",
+        T:    H < 12 ? "A"  : "P",
+        TT:   H < 12 ? "AM" : "PM",
+        Z:    utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
+        o:    (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+        S:    ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
+      };
+
+    return mask.replace(token, function ($0) {
+      return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
+    });
+  };
+}();
+
+// Some common format strings
+dateFormat.masks = {
+  "default":      "ddd mmm dd yyyy HH:MM:ss",
+  shortDate:      "m/d/yy",
+  mediumDate:     "mmm d, yyyy",
+  longDate:       "mmmm d, yyyy",
+  fullDate:       "dddd, mmmm d, yyyy",
+  shortTime:      "h:MM TT",
+  mediumTime:     "h:MM:ss TT",
+  longTime:       "h:MM:ss TT Z",
+  isoDate:        "yyyy-mm-dd",
+  isoTime:        "HH:MM:ss",
+  isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
+  isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
+};
+
+// Internationalization strings
+dateFormat.i18n = {
+  dayNames: [
+    "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+  ],
+  monthNames: [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+  ]
+};
+
+// For convenience...
+Date.prototype.format = function (mask, utc) {
+  return dateFormat(this, mask, utc);
+};
+
+function password_strength(password, dict) { //dict should be an array; dict = Dictionary
+  var score = 0;
+  var str_res = "";
+   
+  if (password.length > 2) {
+    if (password.length >= 8) score++; // 8 chars
+    if ((password.match(/[a-z]/)) && (password.match(/[A-Z]/))) score++; // upper and lower case
+    if (password.match(/\d+/)) score++; // 1 number
+    if (password.match(/\W/)) score++; // special char
+  }
+
+  if (score == 0) str_res = "very_weak";
+  if (score == 1) str_res = "weak";
+  if (score == 2) str_res = "fair";
+  if (score == 3) str_res = "good";
+  if (score == 4) str_res = "strong";
+
+  return str_res;
+}
+
+function build_popup_html(title, content) {
+return "<table border='0' cellpadding='0' cellspacing='0' class='modal'> \
+  <tr> \
+    <td class='header' > \
+      <a class='close' onclick='Control.Modal.close()' /><img src='/img/button/close.gif' alt='close' /></a> \
+      <p>" + title + "</p> \
+    </td> \
+  </tr> \
+  <tr> \
+    <td style='padding:5px'> \
+      " + content + " \
+    </td> \
+  </tr> \
+</table> "; 
+}
+
+function is_postal(fg_process) {
+  ajaxRequest('ajax/check_process.php', {
+    method: 'post',
+    parameters: {
+       process: 'check_process',
+       'fg_process': fg_process
+    },
+    onSuccess: function(res) {
+      
+    },
+    onError: function (res) {
+      alert(res.responseText);
+    },
+    onFailure: function (res) {
+      alert(res.responseText);
+    }
+  });
+}
+
+function create_document(type) {
+  var doc_type = 'application_form_original';
+  $$('.download_document').each(function(e){
+    e.observe('click', function(e) {
+      var f_id = $(this).up('tr').readAttribute('rel');
+
+      ajaxRequest('ajax/document.php', {
+        method: 'get',
+                parameters: {
+                    f_id: f_id,
+                    'doc_type': doc_type,
+                    process: 'document_create'
+                },
+        onError:    function(req) {
+          e.innerHTML = 'Error';
+          e.next('.spin').remove();
+                    e.setStyle({
+                        color: 'red'
+                    });
+        },
+        onFailure: function(req) {
+          e.innerHTML = 'Error';
+          e.next('.spin').remove();
+                    e.setStyle({
+                        color: 'red'
+                    });
+        },
+        onSuccess: function(req) {
+          var res = hashJSON(req.responseText);
+          if (type  === 'html') {
+            var href = 'ajax/document.php?f_id=' + f_id + '&doc_type=' + doc_type + '&process=document_download_html&_sid=' + secret_id;
+          } else {
+            var href = 'ajax/document.php?f_id=' + f_id + '&doc_type=' + doc_type + '&process=document_download&_sid=' + secret_id;
+          }
+          location.href = href;
+        }
+      });
+    });
+  });
+}
+
+function duplicate_applicants(process, but, fg_id, as_u_id) {
+  but.disable();
+  var f_id_list = '';
+  but.previous('table[class=form_line]').select('td[class=id]').each(function(e) {
+    if (e.previous('td[class=multi_action_check_box]').down('input[type=checkbox]').checked) {
+      f_id_list += e.innerHTML + ',';
+    }
+  });
+  ajaxRequest('ajax/complete_document.php', {
+    method: 'post',
+        parameters: {
+            'f_id_list': f_id_list,
+            'fg_id': fg_id,
+            'process': process
+        },
+    onSuccess: function(req) {
+      var response = $H(req.responseText.evalJSON());
+      if (response.get('status') == 'Ok') {
+        document.location.href = response.get('result').replace(/&amp;/g,'&'); 
+      } else {
+        alert(response.get('message'));
+      }
+    },
+    onFailure: function(req) {
+      alert(req.responseText);
+    },
+    onComplete: function(req) {
+      alert(res.responseText);
+    }
+
+  });
+}
+
+function create_window_backup (title, content) {
+  var fake_content_holder_id = 'fake_content_holder_' + (new Date()).getTime();
+    var fake_content_holder = new Element('div', {
+        id: fake_content_holder_id,
+        style: 'display:none;width= 500;'
+    });
+  var window_html = '<table class = "modal"><tbody><tr><td class="header" style = "background-color:#C4C4C4;font-size:14px" >OCR Check <div style = "float:right"><a class="close" onclick="Control.Modal.close()"><img width="21" height="21" src="/img/button/close.gif"></a></div></td></tr><tr><td>'+ content +'</td></tr></tbody></table>';
+  fake_content_holder.insert(window_html);
+
+    document.body.insert({
+        top: fake_content_holder
+    });
+    var fake_anchor = new Element('a', {
+        href: '#' + fake_content_holder_id
+    });
+  
+  var modal = new Control.Modal(fake_anchor,{
+      className: 'modal_container',
+      position: 'center'
+      });
+  modal.open();
+}
+
+
+function create_window (title, content) {
+  var fake_content_holder_id = 'fake_content_holder_' + (new Date()).getTime();
+    var fake_content_holder = new Element('div', {
+        id: fake_content_holder_id,
+        style: 'display:none;width= 500;'
+    });
+  var window_html = '<table class = "modal"><tbody><tr><td class="header" >' + title + ' <a class="close" onclick="Control.Modal.close()"><img width="21" height="21" src="/img/button/close.gif"></a></td></tr><tr><td>'+ content +'</td></tr></tbody></table>';
+    fake_content_holder.insert(window_html);
+
+    document.body.insert({
+        top: fake_content_holder
+    });
+    var fake_anchor = new Element('a', {
+        href: '#' + fake_content_holder_id
+    });
+
+  var modal = new Control.Modal(fake_anchor,{
+    className: 'modal_container',
+    position: 'center'
+  });
+
+  modal.open();
+  
+  if($('control_overlay')) $('control_overlay').style.display = "block";
+
+  return fake_content_holder_id;
+} 
+
+function create_quiz_purpose_window(title) {
+  var content = '<div style="width:800px;max-height:500px;overflow:auto;margin:5px;padding:0 5px;">' + $("quiz_purpose").innerHTML + '</div>';
+  var window_id = create_window(title, content);
+  initToggleLinks({
+    force: true,
+    parent_elem: 'div#' + window_id
+  });
+}
+
+function remove_window() {
+  modal.close();
+}
+
+function toggleNestedCheckBox(parent_elem,evt) {
+  var elem;
+  if (!evt) var evt = window.event;
+  if (evt.target) elem = evt.target;
+  else if (evt.srcElement) elem = evt.srcElement;
+  if (elem != undefined && elem.nodeType == 3) elem = elem.parentNode;
+
+  if (elem.type != "checkbox") {
+    parent_elem.down("input[type=checkbox]").click();  
+  }
+}
+
+function json2html(json) {
+  arr = $A(json.evalJSON());
+  html = "<ul>";
+  arr.each(function(item) {
+    html += "<li>"+item+"</li>";
+  });
+  html += "</ul>";    
+  html = html.replace(/\n/g, "<br/>");
+  return html;
+}

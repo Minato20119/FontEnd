@@ -1,0 +1,147 @@
+
+
+/* ------------- Application Form --------------- */
+
+.fieldWithErrors .calendar_date_select {border: 2px solid red;}
+
+
+.note, .elements_wrapper .help {
+margin-top: 20px;
+background: lightYellow;
+padding: 5px;
+border: #FC0 1px solid;
+box-shadow: 0px 0px 3px #999;
+}
+
+.applicant_list_internet {margin:10px 0px;}
+
+.red_border {border:1px solid red;}
+
+.elements_wrapper {color:#003;}
+.elements_wrapper .help   {display:none; z-index:2; clear:right; width:200px; position:absolute; left:550px; padding:10px; top:-11px} 
+.elements_wrapper .active {display:block}
+.elements_wrapper .display_group_desc { text-align:left; padding:10px; margin:35px 0 15px 0; line-height:40px;}
+.elements_wrapper .display_group_desc p {margin:0; padding:0}
+.elements_wrapper .display_group_desc:nth-of-type(1) {margin-top:0px;}
+.elements_wrapper select {width:200px}
+.elements_wrapper input[type="text"] {width:200px; border-radius:3px;}
+.elements_wrapper input.input_date {width:85px; border-radius:3px;}
+.elements_wrapper textarea, .elements_wrapper select[multiple] {width:200px; height:100px; border: 2px inset buttonface; border-radius: 3px; background:#FFF; }
+.elements_wrapper img[alt="Calendar"] {vertical-align: middle; padding: 1px 1px 1px 3px; border: 1px outset buttonface !important; border-radius: 2px; background:buttonface;}
+.elements_wrapper .field_label {width:50%; float:left; text-align:right; color:#003; padding-right:10px; line-height:25px;} 
+.elements_wrapper label.required .star { content: " *"; color:red; font-size:10px; margin-left:3px; }
+.elements_wrapper .address {list-style: none; border-top: 1px solid #E3DEF4; padding-top: 10px; padding-left: 10px; margin-top: 30px; border-top-right-radius: 10px; margin-left: 33%; clear: both; width:350px;}
+.elements_wrapper .address li {padding:5px;}
+.elements_wrapper .address label {width: 100px; display: block; text-align: right; margin-right: 10px; float: left; line-height: 25px;}
+.elements_wrapper .phonenumber {list-style: none; border-top: 1px solid #E3DEF4; padding-top: 10px; padding-left: 10px; margin-top: 30px; border-top-right-radius: 10px; margin-left: 33%; clear: both; width:400px;}
+.elements_wrapper .phonenumber li {padding:5px;}
+.elements_wrapper .phonenumber label {width: 150px; display: block; text-align: right; margin-right: 10px; float: left; line-height: 25px;}
+
+
+
+/* Buttons */
+.butt, button, input[type="submit"], input[type="button"] {
+ -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#111; 
+  font-weight:bold;
+  padding:5px 24px;
+  text-decoration:none;
+  text-shadow:1px 1px 0px #fff;
+  cursor:pointer;
+}
+
+.butt:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+  background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+  background-color:#dfdfdf;
+  color:#000;
+
+}
+.butt:active, button:active, input[type="submit"]:active, input[type="button"]:active {
+  position:relative;
+  top:1px;
+}
+
+.butt:disabled, button:disabled, input[type="submit"]:disabled, input[type="button"]:disabled {
+  color:graytext;
+  top:0px;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+  background-color:#ededed;
+  cursor:default;
+}
+
+
+.pay_button {
+  -moz-box-shadow:inset 0px -1px 4px 2px #fce2c1;
+  -webkit-box-shadow:inset 0px -1px 4px 2px #fce2c1;
+  box-shadow:inset 0px -1px 4px 2px #fce2c1;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #fee9c1), color-stop(1, #ffaf38) );
+  background:-moz-linear-gradient( center top, #fee9c1 5%, #ffaf38 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fee9c1', endColorstr='#ffaf38');
+  background-color:#fee9c1;
+  -moz-border-radius:14px;
+  -webkit-border-radius:14px;
+  border-radius:14px;
+  border:1px solid #ffaf38;
+  display:inline-block;
+  color:#1e1e7a;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:1px 1px 0px #cc9f52;
+}.pay_button:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffaf38), color-stop(1, #fee9c1) );
+  background:-moz-linear-gradient( center top, #ffaf38 5%, #fee9c1 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffaf38', endColorstr='#fee9c1');
+  background-color:#ffaf38;
+}.pay_button:active {
+  position:relative;
+  top:1px;
+}
+
+input.order {font-size:10px; display:block; padding:5px 10px;}
+
+
+*:first-child+html button, *:first-child+html input[type="submit"], *:first-child+html input[type="button"] {padding: 2px 12px;}
+
+.static-app .left-menu h2 {
+  background: none repeat scroll 0 0 #ccc;
+  margin: 0 0 0 -10px;
+  padding: 0 0 0 15px;
+  padding-top: 0px;
+  position: relative;
+  border: 0;
+  font-weight: 300;
+  line-height: 1.3em;
+  color: #282828;
+  font-size: 21px;
+  font-family:"Helvetica Neue",helvetica,Arial,sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.static-app .left-menu h2:after {
+  border-color: transparent #5f5f5f transparent transparent;
+  border-style: solid;
+  border-width: 11px;
+  content: "";
+  left: -11px;
+  position: absolute;
+  top: 16px;
+  z-index: -1;    
+}
