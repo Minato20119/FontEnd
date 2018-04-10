@@ -6,19 +6,20 @@ html {
 body {
     position: relative;
     margin: 0;
-}
-
-
-body {
-	font: normal 14px/20px Arial, Helvetica, sans-serif;
+    font: normal 14px/20px Arial, Helvetica, sans-serif;
 }
 
 #block-header {
-    background:#3377BB url(C:/Users/Minato/Documents/JS/Final/Image/gradient.png) repeat-x;
+    background:#3377BB url(C:/Users/Minato/Downloads/Project/FontEnd-master/Final/Image/gradient.png) repeat-x;
   }
 
 #toolbar, #header, #headerbar {
     color: #fff; 
+}
+
+#toolbar .float-left > time {
+    margin: 0 15px 0 0;
+    float: left;
 }
 
 .float-left { 
