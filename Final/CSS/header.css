@@ -1,3 +1,14 @@
+html {
+    overflow-y: scroll;
+    min-height: 100%;
+}
+
+body {
+    position: relative;
+    margin: 0;
+}
+
+
 body {
 	font: normal 14px/20px Arial, Helvetica, sans-serif;
 }
