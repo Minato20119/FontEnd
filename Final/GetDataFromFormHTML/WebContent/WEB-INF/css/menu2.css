@@ -1,0 +1,63 @@
+#block-menu {
+  background: #3175ba url(C:/Users/Minato/Downloads/Project/FontEnd-master/Final/Image/menubargradient.png) repeat-x;
+  padding: 5px;
+}
+
+/* .menu-dropdown {
+  margin-bottom: -10px;
+} */
+
+.menu-dropdown li.level1 {
+  margin-right: 10px;
+  padding-bottom: 10px;
+}
+
+.menu-dropdown .level1 {
+  float: left;
+}
+
+/* li {
+  line-height: inherit;
+} */
+
+.menu-dropdown li.active .level1 {
+  color: #fff;
+  background: #3276b9 url(C:/Users/Minato/Downloads/Project/FontEnd-master/Final/Image/menuactive_02.png) repeat-x;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+
+/* .menu-dropdown a.level1 {
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+.menu a {
+  text-decoration: none;
+  display: block;
+  
+}
+
+.menu-dropdown a.level1 > span {
+  height: 30px;
+  padding: 0 10px;
+  line-height: 30px;
+}
+
+/* left */
+/* .menu-dropdown .level1 > span {
+  float: left;
+} */
+
+/* .menu-dropdown .dropdown {
+  position: absolute;
+  left: 0;
+  z-index: 100;
+} */
+
+/* .menu-dropdown .dropdown-bg > div {
+  overflow: hidden;
+} */
+
+
