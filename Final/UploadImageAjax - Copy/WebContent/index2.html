@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+<form name="saveDatabase" method="POST" action="reportServlet">
+	<div class="upload">
+		<form action="" method="post" enctype="multipart/form-data">
+			<div class="formUp">
+				<input type="file" name="file" id="base64" onchange="uploadFile();">
+				<img alt="Click here to upload image" src="" id="target" width="120" height="160">
+				<input type="text" id="base64" value="">
+			</div>
+		</form>
+
+	</div>
+</form>
+	<script>
+        $(document).ready(function () {
+            $(".uploadImage").click(function () {
+                alert("Minato");
+            })
+        })
+    </script>
+
+	<script>
+        $(document).ready(function () {
+            $(".remove").click(function () {
+                alert(target.src);
+
+				
+                
+            });
+        });
+    </script>
+	<script>
+	function uploadFile() {
+
+		var target = document.querySelector("img")
+
+		var file = document.querySelector("input[type=file]").files[0];
+
+		var reader = new FileReader();
+
+		reader.onloadend = function () {
+			target.src = reader.result;
+
+			document.getElementById("base64").value = reader.result;
+			
+			// Ajax
+			$.ajax({
+				method: "POST",
+				url: "fileUpload",
+				data: { minato: reader.result }
+			
+			}).done(function (response) {
+				
+				alert("Success: " + response);
+				
+			}).fail(function (xhr, status, errorThrown) {
+				
+				alert("Error: " + xhr.responseText);
+			});
+		};
+
+		
+		if (file) {
+			reader.readAsDataURL(file);
+			
+		} else {
+			target.src = "";
+		}
+	}
+	</script>
+</body>
+</html>
