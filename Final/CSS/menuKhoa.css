@@ -1,0 +1,187 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    }
+    body {
+        font: normal 14px/20px Arial, Helvetica, sans-serif;
+        color: #444;
+    }
+    
+    #page{
+        background: #eeeeee;
+    }
+    .wrapper {
+        max-width: 1024px;
+    }
+    .wrapper {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: auto;
+    }
+    #toolbar, #header, #headerbar {
+        color: #fff;
+        margin: 0;
+    }
+    .float-left {
+        float: left;
+    }
+    #toolbar .float-left > time {
+        margin: 0 15px 0 0;
+        float: left;
+    }
+    .float-right {
+        float: right;
+    }
+    #toolbar .float-right .module {
+        margin: 0 0 0 15px;
+        float: right;
+    }
+    
+    
+    .module {
+        position: relative;
+    }
+    div.mod-languages ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    div.mod-languages ul.lang-inline li {
+        display: inline;
+    }
+    div.mod-languages li {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    #logo, #logo > img, #menu {
+        float: left;
+    }
+    #block-header {
+        background: #3377BB url(C:\Users\Minato\Documents\JS\Final\Image\gradient.png) repeat-x;
+    }
+    #block-menu {
+        background: #3175ba url(C:\Users\Minato\Documents\JS\Final\Image\gradient.png) repeat-x;
+        padding: 5px;
+        height: 42px;
+    }
+    .menu-dropdown {
+        margin-bottom: -10px;
+    }
+    .menu-dropdown, .menu-dropdown .level1, .menu-dropdown .level1 > span {
+        float: left;
+    }
+    .menu, .menu ul {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+    }
+    .menu-dropdown li.level1 {
+        margin-right: 10px;
+        padding-bottom: 10px;
+        position: relative;
+       
+    }
+    .menu-dropdown li:hover .dropdown, .menu-dropdown li.remain .dropdown{
+        display: block;
+    }
+    .menu-dropdown li:hover .dropdown > div{
+        display: block;
+    }
+    
+    .menu a {
+        text-decoration: none;
+    }
+    
+    li {
+        line-height: inherit;
+    }
+    .menu a, .menu span {
+        display: block;
+    }
+    .menu-dropdown li.active .level1 {
+        color: #fff;
+        background: #3276b9 url(C:\Users\Minato\Documents\JS\Final\Image\menuactive_02.png) repeat-x;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+    .menu-dropdown a.level1 > span, .menu-dropdown span.level1 > span {
+        height: 30px;
+        padding: 0 10px;
+        line-height: 30px;
+    }
+    .menu-dropdown li.level1:hover .level1, .menu-dropdown li.remain .level1 {
+        color: #fff;
+        background: #3f92e4 url(C:\Users\Minato\Documents\JS\Final\Image\menuhover_02.png) repeat-x;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+    .menu-dropdown .dropdown {
+        top: 39px;
+        border: none;
+    }
+    .menu-dropdown .dropdown-bg > div {
+        overflow: hidden;
+    }
+    .menu-dropdown .dropdown {
+        display: none;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        z-index: 100;
+        width: 300px;
+    }
+    .menu-dropdown a.level2, .menu-dropdown span.level2 {
+        border-radius: 3px;
+        background: #082f57;
+        color: #fff;
+        height: 32px;
+        border-bottom: 2px solid #0c3e71;
+        font-size: 14px;
+        padding-top: 3px;
+        padding-left: 6px;
+    }
+    .menu-dropdown a.level2:hover {
+        color: #fff;
+        background: #0c3e71;
+        border-radius: 3px;
+        border-bottom: 2px solid #0c3e71;
+        
+    }
+    .menu-dropdown .dropdown-bg > div {
+        padding: 5px;
+        border: 1px solid transparent;
+        border-top: none;
+        background: #328ae3 url(C:\Users\Minato\Documents\JS\Final\Image\dropdowngradient.png) repeat-x;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+    .dropdown-bg {
+        margin-top: 8px;
+        display: none;
+    }
+    li.level1:hover .dropdown-bg{
+        display: block;
+        transition-delay: 2s;
+    -webkit-transition-delay: 2s;
+        
+    }
+    .menu-dropdown li.level3 {
+        font-size: 11px;
+        line-height: 17px;
+    }
+    .menu-dropdown a.level3 {
+        padding-left: 20px;
+        background: url(C:\Users\Minato\Documents\JS\Final\Image\menubullet.png) 5px 5px no-repeat;
+        color: #fff;
+    }
+    .menu-dropdown a.level1, .menu-dropdown span.level1 {
+        color: #FFFFFF;
+        border: 1px solid transparent;
+    }

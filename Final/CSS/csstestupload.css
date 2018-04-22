@@ -1,0 +1,13 @@
+.upload input[type='file'] {
+    opacity: 0;
+    width: 120px;
+    height: 160px;
+    position: absolute;
+}
+
+.formUp {
+    border: 1px dashed rgb(0, 255, 0);
+    width: 120px;
+    height: 160px;
+}
+
