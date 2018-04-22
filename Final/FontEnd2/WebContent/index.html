@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Minato Namikaze</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css\menu2.css">
+    <link rel="stylesheet" href="css\header.css">
+    <link rel="stylesheet" href="css\footer.css">
+    <link rel="stylesheet" href="css\content.css">
+    <link rel="stylesheet" href="css\left_menu.css">
+    <script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <!-- header -->
+    <div id="block-header">
+        <div class="wrapper">
+            <div id="toolbar" class="clearfix">
+                <div class="float-left">
+                    <time id="dateTime"></time>
+                </div>
+                <div class="float-right">
+                    <div class="module deepest">
+                        <div class="mod-languages">
+                            <ul class="lang-inline">
+                                <li class="lang-active" dir="ltr">
+                                    <a href="index.php/vi">
+                                        <img src="image\vi.gif" alt="Tiếng Việt" title="Tiếng Việt">
+                                    </a>
+                                </li>
+                                <li class="" dir="ltr">
+                                    <a href="index.php/fr">
+                                        <img src="image\fr.gif" alt="Français" title="Français">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <header id="header">
+                <div id="headerbar" class="clearfix">
+                    <a id="logo" href="localhost:8080">
+                        <img src="image\logo.png">
+                    </a>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <!-- block menu -->
+
+    <!-- content -->
+    <div id="page">
+        <div id="main">
+            <!-- left-menu -->
+            <div class="left-menu">
+                <h2>Centre</h2>
+                <ul>
+                    <li>
+                        <a href="splash.php">Change visa application centre</a>
+                    </li>
+                </ul>
+                <h2>My Account</h2>
+                <ul>
+                    <li>
+                        <a href="register.php">Create an Account</a>
+                    </li>
+                    <li>
+                        <a href="login.php">Log In</a>
+                    </li>
+                </ul>
+                <h2>Visa Information</h2>
+                <ul>
+                    <li>
+                        <a href="page.php?pid=procedure">Application Process</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=docs">Documents and Visa Types</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=fees">Application Fees</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=avs">Added Value Services</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=links_downloads">Links and Downloads </a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=faq">FAQ</a>
+                    </li>
+                </ul>
+                <h2>Centre Information</h2>
+                <ul>
+                    <li>
+                        <a href="page.php?pid=address_and_opening_hours">Address and Opening Hours</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=contact_us">Contact Us</a>
+                    </li>
+                    <li>
+                        <a href="inquiry.php">Message Us</a>
+                    </li>
+                </ul>
+                <h2>General Information</h2>
+                <ul>
+                    <li>
+                        <a href="news.php">News</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=security_notice">Security Notice</a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=service_standard">Service Standard </a>
+                    </li>
+                    <li>
+                        <a href="page.php?pid=liste_oi">Intergovernmental Organization </a>
+                    </li>
+                </ul>
+                <div class="change_language_link">
+                    <a style="text-decoration: none" href="https://fr.tlscontact.com/vn/SGN/index.php?l=fr">Français</a>
+                    <small> – </small>
+                    <a style="text-decoration: none" href="https://fr.tlscontact.com/vn/SGN/index.php?l=vi">Vietnamese</a>
+                </div>
+            </div>
+
+            <!-- content -->
+            <div class="content" style="font-family: 'Times New Roman', Times, serif">
+                <div class="upload">
+                    <form name="saveDatabase" method="POST" action="reportServlet">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td>
+                                    	<form action="" method="post" enctype="multipart/form-data">
+	                                        <div class="formUp">
+	                                            <input type="file" name="fileImage1" onchange="uploadFile();">
+	                                            <img alt="Click here to upload image" class="showImage" id="target" src="" width="120" height="160">
+	                                        </div>
+                                        </form>
+                                    </td>
+                                    <td></td>
+                                    <td style="padding-left: 5cm"></td>
+                                    <td>
+                                        <div class="template-form" style="text-align: right; font-size: 10px; margin-bottom: 35%">
+                                            <b>Mẫu (Form) NA1</b>
+                                            <div style="line-height: 0.7">
+                                                <p>Ban hành kèm theo thông tư số 04/2015/TT-BCA</p>
+                                                <p>ngày 05 tháng 01 năm 2015</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="title-form" style="text-align: center; font-size: 15px">
+                            <h3>
+                                <b>TỜ KHAI ĐỀ NGHỊ CẤP THỊ THỰC VIỆT NAM</b>
+                            </h3>
+                            <p>
+                                <i>VIETNAMEESE VISA APPLICATION FORM</i>
+                            </p>
+                            <p>(Dùng cho người nước ngoài - For foreigners)</p>
+                        </div>
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                        <div class="content-form" style="line-height: 1.5">
+                            <!-- <form name="saveDatabase" method="POST" action="reportServlet"> -->
+                            <p>
+                                1- Họ tên (chữ in hoa):
+                                <input type="text" name="form1-fullname" style="border: 0px solid; border-bottom: 1px dotted; width: 73%">
+                                <small>
+                                    <i style="margin-left: 1.5em"> Full name(in captital letters)</i>
+                                </small>
+                            </p>
+
+                            <table>
+                                <tr>
+                                    <td>2-</td>
+                                    <td>Giới tính:</td>
+                                    <td>Nam
+                                        <input type="checkbox" name="form2-sex" value="male">
+                                    </td>
+                                    <td>Nữ
+                                        <input type="checkbox" name="form2-sex" value="female">
+                                    </td>
+                                    <td style="padding-left: 2.2cm"></td>
+
+                                    <td>3- Sinh ngày:
+                                        <input type="date" name="form3-birthday" style="border: 0px solid">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>Sex</i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            <i>Male</i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            <i>Female</i>
+                                        </small>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>Date of birth</i>
+                                        </small>
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                            <p>
+                                4- Nơi sinh:
+                                <input type="text" name="form4-Place-of-birth" style="border: 0px solid; border-bottom: 1px dotted; width: 85%">
+                                <small>
+                                    <i style="margin-left: 1.5em">Place of birth</i>
+                                </small>
+                            </p>
+
+                            <table>
+                                <tr>
+                                    <td>5- Quốc tịch gốc:
+                                        <input type="text" name="form5-Nationality-at-birth" style="border: 0px solid; border-bottom: 1px dotted; width: 3.8cm">
+                                        <small>
+                                            <i style="margin-left: 1.5em">Nationality at birth</i>
+                                        </small>
+                                    </td>
+                                    <td>6- Quốc tịch hiện nay:
+                                        <input type="text" name="form6-Current-nationality" style="border: 0px solid; border-bottom: 1px dotted; width: 3.5cm">
+                                        <small>
+                                            <i style="margin-left: 1.5em">Current nationality </i>
+                                        </small>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>7- Tôn giáo:
+                                        <input type="text" name="form7-Religion" style="border: 0px solid; border-bottom: 1px dotted; width: 4.6cm">
+                                        <small>
+                                            <i style="margin-left: 1.5em">Religion</i>
+                                        </small>
+                                    </td>
+                                    <td>8- Nghề nghiệp:
+                                        <input type="text" name="form8-Occupation" style="border: 0px solid; border-bottom: 1px dotted; width: 4.5cm">
+                                        <small>
+                                            <i style="margin-left: 1.5em">Occupation</i>
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p>
+                                9- Nơi làm việc:
+                                <input type="text" name="form9-Buiness-address" style="border: 0px solid; border-bottom: 1px dotted; width: 11.6cm">
+                                <small>
+                                    <i style="margin-left: 1.5em">Employer and buiness address</i>
+                                </small>
+                            </p>
+
+                            <p>
+                                10- Địa chỉ thường trú:
+                                <input type="text" name="form10-Permanent-residential-address" style="border: 0px solid; border-bottom: 1px dotted; width: 10.6cm">
+                                <small>
+                                    <i style="margin-left: 2em">Permanent residential address</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 30%">
+                                Số điện thoại/Email:
+                                <input type="text" name="form10-Tel-Email" style="border: 0px solid; border-bottom: 1px dotted; width: 6.6cm">
+                                <small>
+                                    <i>Telephone/Email</i>
+                                </small>
+                            </p>
+
+                            <p>
+                                11- Thân nhân
+                                <small>
+                                    <i>Family members:</i>
+                                </small>
+                            </p>
+                            <table style="border: 1px solid black; border-collapse: collapse">
+                                <tr>
+                                    <th style="border: 1px solid; width: 1.7cm; vertical-align: top">Quan hệ
+                                        <br>
+                                        <small>
+                                            <i>Relationship</i>
+                                        </small>
+                                    </th>
+                                    <th style="border: 1px solid; width: 3.5cm; vertical-align: top">Họ tên (chữ in hoa)
+                                        <br>
+                                        <small>
+                                            <i>Full name (in captital letters)</i>
+                                        </small>
+                                    </th>
+                                    <th style="border: 1px solid; width: 1cm; vertical-align: top">Giới tính
+                                        <br>
+                                        <smallp>
+                                            <i>Sex</i>
+                                            </small>
+                                    </th>
+                                    <th style="border: 1px solid; width: 2.7cm; vertical-align: top">Ngày tháng năm sinh
+                                        <br>
+                                        <small>
+                                            <i>Date of birth (Day, Month, Year)</i>
+                                        </small>
+                                    </th>
+                                    <th style="border: 1px solid; width: 1.8cm; vertical-align: top">Quốc tịch
+                                        <br>
+                                        <small>
+                                            <i>Nationality</i>
+                                        </small>
+                                    </th>
+                                    <th style="border: 1px solid; vertical-align: top">Địa chỉ thường trú
+                                        <br>
+                                        <small>
+                                            <i>Permanent residential address</i>
+                                        </small>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-birthDay1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-birthDay2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-birthDay3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address3" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship4 " style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname4" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex4" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-birthDay4" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality4" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-birthDay5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address5" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Relationship6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Fullname6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Sex6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Nationality6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form11-Permanent-residential-address6" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br>
+
+                            <table>
+                                <tr>
+                                    <td>12- Hộ chiếu/giấy tờ có giá trị đi lại quốc tế số:
+                                        <input type="text" name="form12-Passport" style="border: 0px solid; border-bottom: 1px dotted; width: 3.4cm">
+                                        <small>
+                                            <i style="margin-left: 2em">Passport or International Travel Document number</i>
+                                        </small>
+                                    </td>
+                                    <td>loại
+                                        <input type="text" name="form12-Type" style="border: 0px solid; border-bottom: 1px dotted; width: 1.7cm">
+                                        <small>
+                                            <i>Occupation</i>
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table style="margin-left: 1.5em">
+                                <tr>
+                                    <td>Cơ quan cấp:
+                                        <input type="text" name="form12-Issuing-authority" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
+                                        <small>
+                                            <i>Issuing authority:</i>
+                                        </small>
+                                    </td>
+                                    <td>có giá trị đến ngày:
+                                        <small>
+                                            <i>Expiry date </i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <input type="date" name="form12-day" style="border: 0px; border-bottom: 1px dotted">
+                                    </td>
+
+                                </tr>
+                            </table>
+
+                            <p>
+                                13- Ngày nhập cảnh Việt Nam gần nhất (nếu có):
+                                <input type="date" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
+                                <small>
+                                    <i style="margin-left: 2em">Date of the previous entry into Viet Nam (if any)</i>
+                                </small>
+                            </p>
+
+                            <table>
+                                <tr>
+                                    <td>14- Dự kiến nhập cảnh VN ngày
+                                        <input type="date" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted; width: 3.5cm">/
+
+                                    </td>
+                                    <td>; tạm trú ở Việt Nam
+                                        <input type="text" name="form14-stayday" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
+                                    </td>
+                                    <td>ngày</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <small>
+                                            <i style="margin-left: 2em">Intended date of entry (Day, Month, Year)</i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            <i>Intended length of stay in VN</i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <small>
+                                            <i>days</i>
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <p>
+                                15- Mục đích nhập cảnh:
+                                <input type="text" name="form15-Purpose-of-entry" style="border: 0px solid; border-bottom: 1px dotted; width: 10.3cm">
+                                <small>
+                                    <i style="margin-left: 2em">Purpose of entry</i>
+                                </small>
+                            </p>
+
+                            <p>
+                                16- Dự kiến địa chỉ tạm trú ở Việt Nam:
+                                <input type="text" name="form16-address" style="border: 0px solid; border-bottom: 1px dotted; width: 7.9cm">
+                                <small>
+                                    <i style="margin-left: 2em">Intended temporary residential address in Viet Nam</i>
+                                </small>
+                            </p>
+
+                            <p>
+                                17- Cơ quan, tổ chức hoặc cá nhân tại Việt Nam mời, bảo lãnh:
+                                <br>
+                                <small>
+                                    <i style="margin-left: 2em">Hosting organisation/individual in Viet Nam:</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 1.5em">
+                                Cơ quan, tổ chức:
+                                <input type="text" name="form17-organisation" style="border: 0px solid; border-bottom: 1px dotted; width: 10.8cm">
+                                <small>
+                                    <i>Name of hosting organisation</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 1.5em">
+                                Địa chỉ:
+                                <input type="text" name="form17-address1" style="border: 0px solid; border-bottom: 1px dotted; width: 12.5cm">
+                                <small>
+                                    <i>Address</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 1.5em">
+                                Cá nhân (họ tên) :
+                                <input type="text" name="form17-fullname" style="border: 0px solid; border-bottom: 1px dotted; width: 10.8cm">
+                                <small>
+                                    <i>Hosting individual (full name)</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 1.5em">
+                                Địa chỉ:
+                                <input type="text" name="form17-address2" style="border: 0px solid; border-bottom: 1px dotted; width: 12.3cm">
+                                <small>
+                                    <i>Address</i>
+                                </small>
+                            </p>
+
+                            <p style="margin-left: 1.5em">
+                                Quan hệ với bản thân:
+                                <input type="text" name="form17-relationship" style="border: 0px solid; border-bottom: 1px dotted; width: 10.1cm">
+                                <small>
+                                    <i> Relationship to the applicant</i>
+                                </small>
+                            </p>
+
+                            <table>
+                                <tr>
+                                    <td style="vertical-align: top">18- Trẻ em dưới 14 tuổi đi cùng hộ chiếu (nếu có):
+                                        <br>
+                                        <small>
+                                            <i style="margin-left: 2em">Accompanying child(ren) under 14 years old included</i>
+                                            <i style="margin-left: 2em">in your passport (if any): </i>
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <div class="formUp">
+                                            <input type="file" name="fileImage2" id="fileImage2" onchange="uploadFile2();">
+                                            <img alt="Click here to upload image" class="showImage2" id="target" src="" width="120" height="160">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="formUp">
+                                            <input type="file" name="fileImage3" id="fileImage3" onchange="uploadFile3();">
+                                            <img alt="Click here to upload image" class="showImage3" id="target" src="" width="120" height="160">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+
+                            <table style="border: 1px solid black; border-collapse: collapse">
+                                <tr>
+                                    <th style="border: 1px solid; width: 1.5cm">Số TT
+                                        <br>
+                                        <small>
+                                            <i>No</i>
+                                        </small>
+
+                                    </th>
+                                    <th style="border: 1px solid">Họ tên (chữ in hoa)
+                                        <br>
+                                        <small>
+                                            <i>Full name (in captital letters)</i>
+                                        </small>
+
+                                    </th>
+                                    <th style="border: 1px solid; width: 2cm">Giới tính
+                                        <br>
+                                        <small>
+                                            <i>Sex</i>
+                                        </small>
+
+                                    </th>
+                                    <th style="border: 1px solid; width: 4cm">Ngày tháng năm sinh
+                                        <br>
+                                        <small>
+                                            <i>Date of birth</i>
+                                        </small>
+
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-id1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-fullname1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-sex1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form18-birthday1" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-id2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-fullname2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="text" name="form18-sex2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                    <td style="border: 1px solid">
+                                        <input type="date" name="form18-birthday2" style="border: 0px solid; width: 100%">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <td>19-</td>
+                                    <td>Đề nghị cấp thị thực:</td>
+                                    <td></td>
+                                    <td>một lần</td>
+                                    <td>
+                                        <input type="checkbox" name="form19-Applying-visa" value="single">
+                                    </td>
+                                    <td>nhiều lần</td>
+                                    <td>
+
+                                        <td>
+                                            <input type="checkbox" name="form19-Applying-visa" value="multiple">
+                                        </td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>Applying for a visa</i>
+                                        </small>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>Single</i>
+                                        </small>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>Multiple</i>
+                                        </small>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td style="padding-left: 1.5em"></td>
+                                    <td>từ ngày:</td>
+                                    <td>
+                                        <input type="date" name="form19-startDay" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
+                                    </td>
+
+                                    <td>đến ngày</td>
+                                    <td>
+                                        <input type="date" name="form19-endDay" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <small>
+                                            <i>valid form</i>
+                                        </small>
+                                    </td>
+                                    <td></td>
+                                    <td>to</td>
+
+                                </tr>
+                            </table>
+
+
+                            <p>20- Đề nghị khác liên quan việc cấp thị thực (nếu có):
+                                <br>
+                                <small>
+                                    <i style="margin-left: 2em"> Other requests (if any)</i>
+                                </small>
+                            </p>
+                            <input type="text" name="form20-Other-requests" style="border: 0px solid; border-bottom: 1px dotted; width: 95%; margin-left: 2em">
+
+                            <p style="margin-left: 2em">Tôi xin cam đoan những nội dung trên là đúng sự thật.
+                                <br>
+                                <small>
+                                    <i>I declare to the best of my knowledge that all the above particulars are correct</i>
+                                </small>
+                            </p>
+                            <br>
+                            <br>
+                            <br>
+
+                            <table style="margin-left: 11em">
+                                <tr>
+                                    <td>Làm tại:</td>
+                                    <td>
+                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
+                                    </td>
+                                    <td>ngày</td>
+                                    <td>
+                                        <input type="date" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted">
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <small>
+                                            <i>Done at date:</i>
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="margin-left: 19em">
+                                <tr>
+                                    <td>
+                                        <p style="line-height: 0.5">
+                                            <b>Người đề nghị</b> (ký, ghi rõ họ tên)
+                                        </p>
+                                        <small>
+                                            <i>The applicant’s signature and full name
+                                            </i>
+                                        </small>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br>
+                            <br>
+                            <br>
+
+                            <p>
+                                <b>Hướng dẫn điền thông tin vào mẫu.</b>
+                            </p>
+                            <p>
+                                Miền Bắc
+                                <b style="color: red">0901739233</b> - Miền Nam
+                                <b style="color: red">0906280552</b>
+                            </p>
+                            <p>
+                                Email:
+                                <b>
+                                    <u style="color: blue">Vietnamvs247@gmail.com</u>
+                                </b> (Tư vấn giải đáp mọi vướng mắc)
+                            </p>
+                            <p>
+                                <b>(Xin vui lòng xóa thông tin này khi in hồ sơ)</b>
+                            </p>
+
+                            <br>
+                            <div style="text-align: center">
+                                <button type="submit" value="Submit">Submit</button>
+                                <button type="reset" value="Reset">Reset</button>
+                            </div>
+
+                        </div>
+
+                        <br>
+                    </form>
+                </div>
+            </div>
+
+            <!-- right-content -->
+            <div class="right-content">
+                <h2 class="block-title">News</h2>
+                <div class="prev">
+                    <p>
+                        <b> News from French authorities in Vietnam </b> | 07 March 2017
+                    </p>
+                    "Welcome to France", a media portal to facilitate the arrival of all the international talents in France....
+                    <div class="readmore">
+                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_4502">Read more
+                        </a>
+                    </div>
+                </div>
+                <div class="prev">
+                    <p>
+                        <b> CREATION OF A MULTI-YEAR RESIDENT PERMIT FOR HIGHLY QUALIFIED PROFESSIONALS </b> | 12 December 2016
+                    </p>
+                    "CREATION OF A MULTI-YEAR RESIDENT PERMIT FOR HIGHLY QUALIFIED PROFESSIONALS In accordance with the Law of March 7, 2016
+                    creating a new Article L. 313-20 of the CESEDA (code of entry and residence of foreigners and right to
+                    asylum), a new provision named ... "
+                    <div class="readmore">
+                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_5562">Read more
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="footer">
+            <div class="footer-left">© 2016 TLScontact. All rights reserved
+            </div>
+            <div class="footer-right">
+                <a href="https://fr.tlscontact.com/vn/SGN/page.php?pid=terms_of_service">Terms Of Service</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js\time.js"></script>
+	<script>
+	function uploadFile() {
+
+		var target = document.querySelector(".showImage")
+
+		var file = document.querySelector("input[type=file]").files[0];
+
+		var reader = new FileReader();
+
+		reader.onloadend = function () {
+			target.src = reader.result;
+			
+			// Ajax
+			$.ajax({
+				method: "POST",
+				url: "fileUpload",
+				data: { minato: reader.result }
+			
+			}).done(function (response) {
+				
+				alert("Success: " + response);
+				
+			}).fail(function (xhr, status, errorThrown) {
+				
+				alert("Error: " + xhr.responseText);
+			});
+		};
+
+		
+		if (file) {
+			reader.readAsDataURL(file);
+			
+		} else {
+			target.src = "";
+		}
+	}
+	</script>
+</body>
+
+</html>
