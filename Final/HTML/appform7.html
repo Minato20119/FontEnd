@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\left_menu.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\csstestupload.css">
+
 </head>
 
 <body>
@@ -46,9 +47,7 @@
             <header id="header">
                 <div id="headerbar" class="clearfix">
                     <a id="logo" href="localhost:8080">
-                        <p>
-                            <img src="C:\Users\Minato\Documents\JS\Final\Image\logo.png">
-                        </p>
+                        <img src="C:\Users\Minato\Documents\JS\Final\Image\logo.png">
                     </a>
                 </div>
             </header>
@@ -92,8 +91,7 @@
                         <a href="page.php?pid=avs">Added Value Services</a>
                     </li>
                     <li>
-                        <a href="page.php?pid=links_downloads">Links and Downloads
-                        </a>
+                        <a href="page.php?pid=links_downloads">Links and Downloads </a>
                     </li>
                     <li>
                         <a href="page.php?pid=faq">FAQ</a>
@@ -120,12 +118,10 @@
                         <a href="page.php?pid=security_notice">Security Notice</a>
                     </li>
                     <li>
-                        <a href="page.php?pid=service_standard">Service Standard
-                        </a>
+                        <a href="page.php?pid=service_standard">Service Standard </a>
                     </li>
                     <li>
-                        <a href="page.php?pid=liste_oi">Intergovernmental Organization
-                        </a>
+                        <a href="page.php?pid=liste_oi">Intergovernmental Organization </a>
                     </li>
                 </ul>
                 <div class="change_language_link">
@@ -136,21 +132,22 @@
             </div>
 
             <!-- content -->
-            <div class="content" style=" font-family: 'Times New Roman', Times, serif">
+            <div class="content" style="font-family: 'Times New Roman', Times, serif">
                 <div class="upload">
-                    <form name="saveDatabase" method="POST" action="reportServlet" enctype="multipart/form-data">
+                    <form name="saveDatabase" method="POST" action="reportServlet">
                         <div>
                             <table>
                                 <tr>
                                     <td>
-                                        <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile();">
-                                            <img alt="Click here to upload image" class="showImage" id="target" src="" width="120" height="160">
-                                        </div>
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="formUp">
+                                                <input type="file" name="fileImage1" class="fileImage1" onchange="uploadFile1();">
+                                                <img alt="Click here to upload image" class="showImage1" id="target1" src=""
+                                                    width="120" height="160">
+                                            </div>
+                                        </form>
                                     </td>
-                                    <td>
-
-                                    </td>
+                                    <td></td>
                                     <td style="padding-left: 5cm"></td>
                                     <td>
                                         <div class="template-form" style="text-align: right; font-size: 10px; margin-bottom: 35%">
@@ -176,6 +173,9 @@
                         </div>
 
                         <br>
+                        <br>
+                        <br>
+                        <br>
 
                         <div class="content-form" style="line-height: 1.5">
                             <!-- <form name="saveDatabase" method="POST" action="reportServlet"> -->
@@ -197,15 +197,10 @@
                                     <td>Nữ
                                         <input type="checkbox" name="form2-sex" value="female">
                                     </td>
-                                    <td style="padding-left: 1.5cm"></td>
-                                    <td>3- Sinh ngày
-                                        <input type="number" name="form3-birthday" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>tháng
-                                        <input type="number" name="form3-birthmonth" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm
-                                        <input type="number" name="form3-birthyear" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                    <td style="padding-left: 2.2cm"></td>
+
+                                    <td>3- Sinh ngày:
+                                        <input type="date" name="form3-birthday" style="border: 0px solid">
                                     </td>
                                 </tr>
                                 <tr>
@@ -228,19 +223,10 @@
                                     <td></td>
                                     <td>
                                         <small>
-                                            <i>Date of birth Day</i>
+                                            <i>Date of birth</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
@@ -263,8 +249,7 @@
                                     <td>6- Quốc tịch hiện nay:
                                         <input type="text" name="form6-Current-nationality" style="border: 0px solid; border-bottom: 1px dotted; width: 3.5cm">
                                         <small>
-                                            <i style="margin-left: 1.5em">Current nationality
-                                            </i>
+                                            <i style="margin-left: 1.5em">Current nationality </i>
                                         </small>
                                     </td>
                                 </tr>
@@ -308,8 +293,6 @@
                                     <i>Telephone/Email</i>
                                 </small>
                             </p>
-
-
 
                             <p>
                                 11- Thân nhân
@@ -367,7 +350,7 @@
                                         <input type="text" name="form11-Sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality1" style="border: 0px solid; width: 100%">
@@ -387,7 +370,7 @@
                                         <input type="text" name="form11-Sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality2" style="border: 0px solid; width: 100%">
@@ -407,7 +390,7 @@
                                         <input type="text" name="form11-Sex3" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay3" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay3" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality3" style="border: 0px solid; width: 100%">
@@ -427,7 +410,7 @@
                                         <input type="text" name="form11-Sex4" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay4" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay4" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality4" style="border: 0px solid; width: 100%">
@@ -447,7 +430,7 @@
                                         <input type="text" name="form11-Sex5" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay5" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay5" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality5" style="border: 0px solid; width: 100%">
@@ -467,7 +450,7 @@
                                         <input type="text" name="form11-Sex6" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality6" style="border: 0px solid; width: 100%">
@@ -483,7 +466,8 @@
                             <table>
                                 <tr>
                                     <td>12- Hộ chiếu/giấy tờ có giá trị đi lại quốc tế số:
-                                        <input type="text" name="form12-Passport" style="border: 0px solid; border-bottom: 1px dotted; width: 3.4cm">
+                                        <input type="text" name="form12-Passport"
+                                            style="border: 0px solid; border-bottom: 1px dotted; width: 3.4cm">
                                         <small>
                                             <i style="margin-left: 2em">Passport or International Travel Document number</i>
                                         </small>
@@ -511,31 +495,15 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <input type="number" name="form12-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
+                                        <input type="date" name="form12-day" style="border: 0px; border-bottom: 1px dotted">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
                             <p>
                                 13- Ngày nhập cảnh Việt Nam gần nhất (nếu có):
-                                <input type="text" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
+                                <input type="date" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
                                 <small>
                                     <i style="margin-left: 2em">Date of the previous entry into Viet Nam (if any)</i>
                                 </small>
@@ -544,12 +512,11 @@
                             <table>
                                 <tr>
                                     <td>14- Dự kiến nhập cảnh VN ngày
-                                        <input type="number" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted; width: 3.5cm">/
+
                                     </td>
                                     <td>; tạm trú ở Việt Nam
-                                        <input type="number" name="form14-stayday" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
+                                        <input type="text" name="form14-stayday" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
                                     </td>
                                     <td>ngày</td>
                                 </tr>
@@ -589,7 +556,8 @@
                                 </small>
                             </p>
 
-                            <p>17- Cơ quan, tổ chức hoặc cá nhân tại Việt Nam mời, bảo lãnh:
+                            <p>
+                                17- Cơ quan, tổ chức hoặc cá nhân tại Việt Nam mời, bảo lãnh:
                                 <br>
                                 <small>
                                     <i style="margin-left: 2em">Hosting organisation/individual in Viet Nam:</i>
@@ -646,16 +614,22 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile2();">
-                                            <img alt="Click here to upload image" class="showImage2" id="target" src="" width="120" height="160">
-                                        </div>
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="formUp">
+                                                <input type="file" name="fileImage2" class="fileImage2" onchange="uploadFile2();">
+                                                <img alt="Click here to upload image" class="showImage2" id="target2" src=""
+                                                    width="120" height="160">
+                                            </div>
+                                        </form>
                                     </td>
                                     <td>
-                                        <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile3();">
-                                            <img alt="Click here to upload image" class="showImage3" id="target" src="" width="120" height="160">
-                                        </div>
+                                        <form action="" method="post" enctype="multipart/form-data">
+                                            <div class="formUp">
+                                                <input type="file" name="fileImage3" class="fileImage3" onchange="uploadFile3();">
+                                                <img alt="Click here to upload image" class="showImage3" id="target3" src=""
+                                                    width="120" height="160">
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                             </table>
@@ -703,7 +677,7 @@
                                         <input type="text" name="form18-sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday1" style="border: 0px solid; width: 100%">
                                     </td>
                                 </tr>
                                 <tr>
@@ -717,7 +691,7 @@
                                         <input type="text" name="form18-sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday2" style="border: 0px solid; width: 100%">
                                     </td>
                                 </tr>
                             </table>
@@ -729,12 +703,12 @@
                                     <td></td>
                                     <td>một lần</td>
                                     <td>
-                                        <input type="checkbox" name="form19" value="single">
+                                        <input type="checkbox" name="form19-Applying-visa" value="single">
                                     </td>
                                     <td>nhiều lần</td>
                                     <td>
                                         <td>
-                                            <input type="checkbox" name="form19" value="multiple">
+                                            <input type="checkbox" name="form19-Applying-visa" value="multiple">
                                         </td>
                                     </td>
                                 </tr>
@@ -765,28 +739,14 @@
                                     <td style="padding-left: 1.5em"></td>
                                     <td>từ ngày:</td>
                                     <td>
-                                        <input type="number" name="form19-day1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-startDay" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                     <td>đến ngày</td>
                                     <td>
-                                        <input type="number" name="form19-day2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-endDay" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -795,46 +755,15 @@
                                             <i>valid form</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
                                     <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
                                     <td>to</td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
 
-                            <p>20- Đề nghị khác liên quan việc cấp thị thực (nếu có):
+                            <p>
+                                20- Đề nghị khác liên quan việc cấp thị thực (nếu có):
                                 <br>
                                 <small>
                                     <i style="margin-left: 2em"> Other requests (if any)</i>
@@ -842,7 +771,8 @@
                             </p>
                             <input type="text" name="form20-Other-requests" style="border: 0px solid; border-bottom: 1px dotted; width: 95%; margin-left: 2em">
 
-                            <p style="margin-left: 2em">Tôi xin cam đoan những nội dung trên là đúng sự thật.
+                            <p style="margin-left: 2em">
+                                Tôi xin cam đoan những nội dung trên là đúng sự thật.
                                 <br>
                                 <small>
                                     <i>I declare to the best of my knowledge that all the above particulars are correct</i>
@@ -856,20 +786,13 @@
                                 <tr>
                                     <td>Làm tại:</td>
                                     <td>
-                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 2cm">
+                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
                                     </td>
                                     <td>ngày</td>
                                     <td>
-                                        <input type="number" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted">
                                     </td>
-                                    <td>tháng</td>
-                                    <td>
-                                        <input type="number" name="form21-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm</td>
-                                    <td>
-                                        <input type="number" name="form21-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td>
@@ -877,25 +800,6 @@
                                             <i>Done at date:</i>
                                         </small>
                                     </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
                                 </tr>
                             </table>
                             <table style="margin-left: 19em">
@@ -905,8 +809,7 @@
                                             <b>Người đề nghị</b> (ký, ghi rõ họ tên)
                                         </p>
                                         <small>
-                                            <i>The applicant’s signature and full name
-                                            </i>
+                                            <i>The applicant’s signature and full name </i>
                                         </small>
                                     </td>
                                 </tr>
@@ -939,6 +842,7 @@
                                 <button type="submit" value="Submit">Submit</button>
                                 <button type="reset" value="Reset">Reset</button>
                             </div>
+
                         </div>
 
                         <br>
@@ -955,8 +859,7 @@
                     </p>
                     "Welcome to France", a media portal to facilitate the arrival of all the international talents in France....
                     <div class="readmore">
-                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_4502">Read more
-                        </a>
+                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_4502">Read more </a>
                     </div>
                 </div>
                 <div class="prev">
@@ -967,11 +870,11 @@
                     creating a new Article L. 313-20 of the CESEDA (code of entry and residence of foreigners and right to
                     asylum), a new provision named ... "
                     <div class="readmore">
-                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_5562">Read more
-                        </a>
+                        <a href="https://fr.tlscontact.com/vn/SGN/news.php?id=4601_5562">Read more </a>
                     </div>
                 </div>
             </div>
+
         </div>
         <div id="footer">
             <div class="footer-left">© 2016 TLScontact. All rights reserved
@@ -981,15 +884,121 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                target.src = "";
-            });
-        });
-    </script>
-    <script src="C:\Users\Minato\Documents\JS\Final\JS\uploadImage.js"></script>
+
     <script src="C:\Users\Minato\Documents\JS\Final\JS\time.js"></script>
+    <script>
+        function uploadFile1() {
+
+            var target1 = document.querySelector(".showImage1")
+
+            var file1 = document.querySelector(".fileImage1").files[0];
+
+            var reader1 = new FileReader();
+
+            reader1.onloadend = function () {
+                target1.src = reader1.result;
+
+                // Ajax
+                $.ajax({
+                    method: "POST",
+                    url: "fileUpload",
+                    data: { minato1: reader1.result }
+
+                }).done(function (response) {
+
+                    alert("Success: " + response);
+
+                }).fail(function (xhr, status, errorThrown) {
+
+                    alert("Error: " + xhr.responseText);
+                });
+            };
+
+
+            if (file1) {
+                reader1.readAsDataURL(file1);
+
+            } else {
+                target1.src = "";
+            }
+        }
+    </script>
+
+    <script>
+        function uploadFile2() {
+
+            var target2 = document.querySelector(".showImage2")
+
+            var file2 = document.querySelector(".fileImage2").files[0];
+
+            var reader2 = new FileReader();
+
+            reader2.onloadend = function () {
+                target2.src = reader2.result;
+
+                // Ajax
+                $.ajax({
+                    method: "POST",
+                    url: "fileUpload",
+                    data: { minato2: reader2.result }
+
+                }).done(function (response) {
+
+                    alert("Success: " + response);
+
+                }).fail(function (xhr, status, errorThrown) {
+
+                    alert("Error: " + xhr.responseText);
+                });
+            };
+
+
+            if (file2) {
+                reader2.readAsDataURL(file2);
+
+            } else {
+                target2.src = "";
+            }
+        }
+    </script>
+
+    <script>
+        function uploadFile3() {
+
+            var target3 = document.querySelector(".showImage3")
+
+            var file3 = document.querySelector(".fileImage3").files[0];
+
+            var reader3 = new FileReader();
+
+            reader3.onloadend = function () {
+                target3.src = reader3.result;
+
+                // Ajax
+                $.ajax({
+                    method: "POST",
+                    url: "fileUpload",
+                    data: { minato3: reader3.result }
+
+                }).done(function (response) {
+
+                    alert("Success: " + response);
+
+                }).fail(function (xhr, status, errorThrown) {
+
+                    alert("Error: " + xhr.responseText);
+                });
+            };
+
+
+            if (file3) {
+                reader3.readAsDataURL(file3);
+
+            } else {
+                target3.src = "";
+            }
+        }
+    </script>
 </body>
 
 </html>

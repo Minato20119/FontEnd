@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Minato Namikaze</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\menu2.css">
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\header.css">
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\footer.css">
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\content.css">
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\left_menu.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\menu2.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\header.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\footer.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\content.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\left_menu.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="C:\Users\Minato\Documents\JS\Final\CSS\csstestupload.css">
+    <link rel="stylesheet" href="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\CSS\upload.css">
 </head>
 
 <body>
@@ -29,12 +29,12 @@
                             <ul class="lang-inline">
                                 <li class="lang-active" dir="ltr">
                                     <a href="index.php/vi">
-                                        <img src="C:\Users\Minato\Documents\JS\Final\Image\vi.gif" alt="Tiếng Việt" title="Tiếng Việt">
+                                        <img src="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\Image\vi.gif" alt="Tiếng Việt" title="Tiếng Việt">
                                     </a>
                                 </li>
                                 <li class="" dir="ltr">
                                     <a href="index.php/fr">
-                                        <img src="C:\Users\Minato\Documents\JS\Final\Image\fr.gif" alt="Français" title="Français">
+                                        <img src="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\Image\fr.gif" alt="Français" title="Français">
                                     </a>
                                 </li>
                             </ul>
@@ -47,7 +47,7 @@
                 <div id="headerbar" class="clearfix">
                     <a id="logo" href="localhost:8080">
                         <p>
-                            <img src="C:\Users\Minato\Documents\JS\Final\Image\logo.png">
+                            <img src="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\Image\logo.png">
                         </p>
                     </a>
                 </div>
@@ -144,7 +144,7 @@
                                 <tr>
                                     <td>
                                         <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile();">
+                                            <input type="file" name="fileToUpload" id="file" onchange="uploadFile();">
                                             <img alt="Click here to upload image" class="showImage" id="target" src="" width="120" height="160">
                                         </div>
                                     </td>
@@ -197,15 +197,10 @@
                                     <td>Nữ
                                         <input type="checkbox" name="form2-sex" value="female">
                                     </td>
-                                    <td style="padding-left: 1.5cm"></td>
-                                    <td>3- Sinh ngày
-                                        <input type="number" name="form3-birthday" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>tháng
-                                        <input type="number" name="form3-birthmonth" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm
-                                        <input type="number" name="form3-birthyear" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                    <td style="padding-left: 2.2cm"></td>
+
+                                    <td>3- Sinh ngày:
+                                        <input type="date" name="form3-birthday" style="border: 0px solid">
                                     </td>
                                 </tr>
                                 <tr>
@@ -228,19 +223,10 @@
                                     <td></td>
                                     <td>
                                         <small>
-                                            <i>Date of birth Day</i>
+                                            <i>Date of birth</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
@@ -309,8 +295,6 @@
                                 </small>
                             </p>
 
-
-
                             <p>
                                 11- Thân nhân
                                 <small>
@@ -367,7 +351,7 @@
                                         <input type="text" name="form11-Sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality1" style="border: 0px solid; width: 100%">
@@ -387,7 +371,7 @@
                                         <input type="text" name="form11-Sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality2" style="border: 0px solid; width: 100%">
@@ -407,7 +391,7 @@
                                         <input type="text" name="form11-Sex3" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay3" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay3" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality3" style="border: 0px solid; width: 100%">
@@ -427,7 +411,7 @@
                                         <input type="text" name="form11-Sex4" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay4" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay4" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality4" style="border: 0px solid; width: 100%">
@@ -447,7 +431,7 @@
                                         <input type="text" name="form11-Sex5" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay5" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay5" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality5" style="border: 0px solid; width: 100%">
@@ -467,7 +451,7 @@
                                         <input type="text" name="form11-Sex6" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality6" style="border: 0px solid; width: 100%">
@@ -511,31 +495,15 @@
                                         </small>
                                     </td>
                                     <td>
-                                        <input type="number" name="form12-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
+                                        <input type="date" name="form12-day" style="border: 0px; border-bottom: 1px dotted">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
                             <p>
                                 13- Ngày nhập cảnh Việt Nam gần nhất (nếu có):
-                                <input type="text" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
+                                <input type="date" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
                                 <small>
                                     <i style="margin-left: 2em">Date of the previous entry into Viet Nam (if any)</i>
                                 </small>
@@ -544,9 +512,8 @@
                             <table>
                                 <tr>
                                     <td>14- Dự kiến nhập cảnh VN ngày
-                                        <input type="number" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted;  width: 3.5cm">/
+
                                     </td>
                                     <td>; tạm trú ở Việt Nam
                                         <input type="number" name="form14-stayday" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
@@ -703,7 +670,7 @@
                                         <input type="text" name="form18-sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday1" style="border: 0px solid; width: 100%">
                                     </td>
                                 </tr>
                                 <tr>
@@ -717,7 +684,7 @@
                                         <input type="text" name="form18-sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday2" style="border: 0px solid; width: 100%">
                                     </td>
                                 </tr>
                             </table>
@@ -765,28 +732,14 @@
                                     <td style="padding-left: 1.5em"></td>
                                     <td>từ ngày:</td>
                                     <td>
-                                        <input type="number" name="form19-day1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-day1" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                     <td>đến ngày</td>
                                     <td>
-                                        <input type="number" name="form19-day2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-day2" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -795,41 +748,9 @@
                                             <i>valid form</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
                                     <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
                                     <td>to</td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+                                    
                                 </tr>
                             </table>
 
@@ -856,20 +777,13 @@
                                 <tr>
                                     <td>Làm tại:</td>
                                     <td>
-                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 2cm">
+                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
                                     </td>
                                     <td>ngày</td>
                                     <td>
-                                        <input type="number" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted">
                                     </td>
-                                    <td>tháng</td>
-                                    <td>
-                                        <input type="number" name="form21-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm</td>
-                                    <td>
-                                        <input type="number" name="form21-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -877,25 +791,6 @@
                                             <i>Done at date:</i>
                                         </small>
                                     </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
                                 </tr>
                             </table>
                             <table style="margin-left: 19em">
@@ -988,8 +883,9 @@
             });
         });
     </script>
-    <script src="C:\Users\Minato\Documents\JS\Final\JS\uploadImage.js"></script>
-    <script src="C:\Users\Minato\Documents\JS\Final\JS\time.js"></script>
+
+    <script src="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\JS\time.js"></script>
+    <script src="C:\Users\Minato\Downloads\Project\FontEnd-master\Final\JS\uploadImage.js"></script>
 </body>
 
 </html>

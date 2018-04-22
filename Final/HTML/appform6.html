@@ -197,15 +197,10 @@
                                     <td>Nữ
                                         <input type="checkbox" name="form2-sex" value="female">
                                     </td>
-                                    <td style="padding-left: 1.5cm"></td>
-                                    <td>3- Sinh ngày
-                                        <input type="number" name="form3-birthday" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>tháng
-                                        <input type="number" name="form3-birthmonth" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm
-                                        <input type="number" name="form3-birthyear" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                    <td style="padding-left: 2.2cm"></td>
+
+                                    <td>3- Sinh ngày:
+                                        <input type="date" name="form3-birthday" style="border: 0px solid; text-align: center">
                                     </td>
                                 </tr>
                                 <tr>
@@ -228,19 +223,10 @@
                                     <td></td>
                                     <td>
                                         <small>
-                                            <i>Date of birth Day</i>
+                                            <i>Date of birth</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
@@ -367,7 +353,7 @@
                                         <input type="text" name="form11-Sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay1" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality1" style="border: 0px solid; width: 100%">
@@ -387,7 +373,7 @@
                                         <input type="text" name="form11-Sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay2" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality2" style="border: 0px solid; width: 100%">
@@ -407,7 +393,7 @@
                                         <input type="text" name="form11-Sex3" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay3" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay3" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality3" style="border: 0px solid; width: 100%">
@@ -427,7 +413,7 @@
                                         <input type="text" name="form11-Sex4" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay4" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay4" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality4" style="border: 0px solid; width: 100%">
@@ -447,7 +433,7 @@
                                         <input type="text" name="form11-Sex5" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-birthDay5" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-birthDay5" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality5" style="border: 0px solid; width: 100%">
@@ -467,7 +453,7 @@
                                         <input type="text" name="form11-Sex6" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form11-BirthDay6" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form11-BirthDay6" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                     <td style="border: 1px solid">
                                         <input type="text" name="form11-Nationality6" style="border: 0px solid; width: 100%">
@@ -500,42 +486,27 @@
                             <table style="margin-left: 1.5em">
                                 <tr>
                                     <td>Cơ quan cấp:
-                                        <input type="text" name="form12-Issuing-authority" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
+                                        <input type="text" name="form12-Issuing-authority" style="border: 0px solid; border-bottom: 1px dotted; width: 3.5cm">
                                         <small>
                                             <i>Issuing authority:</i>
                                         </small>
                                     </td>
                                     <td>có giá trị đến ngày:
+                                            <input type="date" name="form12-day" style="border: 0px; border-bottom: 1px dotted; text-align: center">
                                         <small>
                                             <i>Expiry date </i>
                                         </small>
                                     </td>
                                     <td>
-                                        <input type="number" name="form12-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
+                                        
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form12-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+
                                 </tr>
                             </table>
 
                             <p>
                                 13- Ngày nhập cảnh Việt Nam gần nhất (nếu có):
-                                <input type="text" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm">
+                                <input type="date" name="form13-day" style="border: 0px solid; border-bottom: 1px dotted; width: 6.5cm; text-align: center">
                                 <small>
                                     <i style="margin-left: 2em">Date of the previous entry into Viet Nam (if any)</i>
                                 </small>
@@ -544,9 +515,8 @@
                             <table>
                                 <tr>
                                     <td>14- Dự kiến nhập cảnh VN ngày
-                                        <input type="number" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">/
-                                        <input type="number" name="form14-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form14-day" style="border: 0px solid; border-bottom: 1px dotted;  width: 3.5cm; text-align: center">/
+
                                     </td>
                                     <td>; tạm trú ở Việt Nam
                                         <input type="number" name="form14-stayday" style="border: 0px solid; border-bottom: 1px dotted; width: 1cm">
@@ -647,13 +617,13 @@
                                     </td>
                                     <td>
                                         <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile2();">
+                                            <input type="file" name="file" id="file" onchange="uploadFile();">
                                             <img alt="Click here to upload image" class="showImage2" id="target" src="" width="120" height="160">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="formUp">
-                                            <input type="file" name="file" id="file" onchange="uploadFile3();">
+                                            <input type="file" name="file" id="file" onchange="uploadFile();">
                                             <img alt="Click here to upload image" class="showImage3" id="target" src="" width="120" height="160">
                                         </div>
                                     </td>
@@ -703,7 +673,7 @@
                                         <input type="text" name="form18-sex1" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday1" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday1" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                 </tr>
                                 <tr>
@@ -717,7 +687,7 @@
                                         <input type="text" name="form18-sex2" style="border: 0px solid; width: 100%">
                                     </td>
                                     <td style="border: 1px solid">
-                                        <input type="text" name="form18-birthday2" style="border: 0px solid; width: 100%">
+                                        <input type="date" name="form18-birthday2" style="border: 0px solid; width: 100%; text-align: center">
                                     </td>
                                 </tr>
                             </table>
@@ -765,28 +735,14 @@
                                     <td style="padding-left: 1.5em"></td>
                                     <td>từ ngày:</td>
                                     <td>
-                                        <input type="number" name="form19-day1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-day1" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm; text-align: center">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year1" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                     <td>đến ngày</td>
                                     <td>
-                                        <input type="number" name="form19-day2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form19-day2" style="border: 0px solid; border-bottom: 1px dotted; width: 4cm; text-align: center">
                                     </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-month2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>/</td>
-                                    <td>
-                                        <input type="number" name="form19-year2" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -795,41 +751,9 @@
                                             <i>valid form</i>
                                         </small>
                                     </td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
                                     <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
                                     <td>to</td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
+                                    
                                 </tr>
                             </table>
 
@@ -856,20 +780,13 @@
                                 <tr>
                                     <td>Làm tại:</td>
                                     <td>
-                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 2cm">
+                                        <input type="text" name="form20-at" style="border: 0px solid; border-bottom: 1px dotted; width: 3cm">
                                     </td>
                                     <td>ngày</td>
                                     <td>
-                                        <input type="number" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
+                                        <input type="date" name="form21-day" style="border: 0px solid; border-bottom: 1px dotted; text-align: center">
                                     </td>
-                                    <td>tháng</td>
-                                    <td>
-                                        <input type="number" name="form21-month" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
-                                    <td>năm</td>
-                                    <td>
-                                        <input type="number" name="form21-year" style="border: 0px solid; border-bottom: 1px dotted; width: 1.2cm">
-                                    </td>
+                                    
                                 </tr>
                                 <tr>
                                     <td>
@@ -877,25 +794,6 @@
                                             <i>Done at date:</i>
                                         </small>
                                     </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Day</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Month</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <small>
-                                            <i>Year</i>
-                                        </small>
-                                    </td>
-                                    <td></td>
                                 </tr>
                             </table>
                             <table style="margin-left: 19em">
