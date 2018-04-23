@@ -10,7 +10,7 @@ body {
 }
 
 #block-header {
-    background:#3377BB url(C:/Users/Minato/Downloads/Project/FontEnd-master/Final/Image/gradient.png) repeat-x;
+    background:#3377BB url('../../images/gradient.png') repeat-x;
   }
 
 #toolbar, #header, #headerbar {

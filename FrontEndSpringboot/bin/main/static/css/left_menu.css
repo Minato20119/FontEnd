@@ -34,7 +34,7 @@
 
 .left-menu ul li {
     list-style-type: square;
-    list-style-image: url(C:/Users/Minato/Downloads/Project/FontEnd-master/Final/Image/menu-leaf.png);
+    list-style-image: url('../../images/menu-leaf.png');
     margin: 0 0 0 0.5em;
     padding: 0.2em 0.5em 0 0;
 }

@@ -8,7 +8,7 @@ public class Configure {
 	
 	public static final String USERNAME_MYSQL = "root";
 	
-	public static final String PASSWORD_MYSQL = "123456";
+	public static final String PASSWORD_MYSQL = "Gango2405";
 	
 	public static final String NAME_SCHEMA = "html";
 	

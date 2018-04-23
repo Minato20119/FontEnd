@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.config.Configure;
 
@@ -41,6 +42,7 @@ public class HomeController extends HttpServlet {
 	}
 
 	@PostMapping("reportServlet")
+	@ResponseBody
 	public String home(HttpServletRequest request) {
 
 		Statement statement = connectDataBase();
@@ -217,7 +219,7 @@ public class HomeController extends HttpServlet {
 
 		}
 
-		sql += "image nvarchar(500), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP, primary key (id));";
+		sql += "image nvarchar(500), created_at BIGINT, updated_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP, primary key (id));";
 
 		sql = sql.replaceAll("-", "_");
 
@@ -386,14 +388,12 @@ public class HomeController extends HttpServlet {
 	// Insert data
 	private static void insertDatabase(Statement st, String imageJson) throws SQLException, ParseException {
 
-		Timestamp created_at = new Timestamp(System.currentTimeMillis());
-
 		if (querry.contains(",")) {
 
 			querry = querry.substring(0, querry.length()) + " image, " + "created_at) ";
 
 			if (value.contains(",")) {
-				value = value.substring(0, value.length()) + "'" + imageJson + "'" + ", \"" + created_at + "\");";
+				value = value.substring(0, value.length()) + "'" + imageJson + "'" + ", \"" + System.currentTimeMillis() + "\");";
 			}
 
 			querry = querry.replaceAll("-", "_").toLowerCase();
