@@ -1,0 +1,80 @@
+.left-menu {
+    float: left;
+    width: 142px;
+
+}
+
+.left-menu h2 {
+    background: none repeat scroll 0 0 #ccc;
+    margin: 0 0 0 -10px;
+    padding: 0 15px 0 15px;
+    padding-top: 0px;
+    position: relative;
+    border: 0;
+    font-weight: 300;
+    line-height: 1.3em;
+    color: #282828;
+    font-size: 21px;
+    font-family: "Helvetica Neue",helvetica,Arial,sans-serif;
+    letter-spacing: 0.03em;
+}
+
+
+
+.left-menu ul {
+    background-color: rgba(170, 170, 170, 0.2);
+    margin: 0px;
+    padding-bottom: 10px;
+    padding-left: 16px;
+    padding-top: 5px;
+    list-style: none outside none;
+    color: #282828;
+    font-size: 14px;
+}
+
+.left-menu ul li {
+    list-style-type: square;
+    list-style-image: url('../../images/menu-leaf.png');
+    margin: 0 0 0 0.5em;
+    padding: 0.2em 0.5em 0 0;
+}
+
+.left-menu ul {
+    color: #282828;
+    font-size: 14px;
+}
+
+.left-menu ul li a {
+    text-decoration: none;
+    color: #282828;
+    font-weight: 400;
+    line-height: 19.5px;
+}
+
+div.change_language_link {
+    margin: 15px 0;
+    padding: 5px 10px 5px 10px;
+    background: #F9F9F9;
+    font-size: 90%;
+}
+
+div.change_language_link {
+    font-size: 90%;
+}
+
+.left-menu h2:after {
+    border-color: transparent #5f5f5f transparent transparent;
+    border-style: solid;
+    border-width: 11px;
+    content: "";
+    left: -11px;
+    position: absolute;
+    top: 16px;
+    z-index: -1;
+}
+
+.content {
+    float: left;
+    width: 547px;
+    margin: 10px 20px 30px 20px;
+}
