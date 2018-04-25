@@ -31,8 +31,7 @@ public class FileUpload extends HttpServlet {
 	public static String getImage(HttpServletRequest request) throws IOException {
 
 		String fileUpload1 = request.getParameter("minato1");
-//		LOGGER.info("image: " + fileUpload1);
-		LOGGER.info("Done image 0");
+		LOGGER.info("Done image: " + fileUpload1);
 
 		if (fileUpload1 != null) {
 			String imageString = fileUpload1.substring(fileUpload1.indexOf(",") + 1, fileUpload1.length());
@@ -49,8 +48,7 @@ public class FileUpload extends HttpServlet {
 		}
 
 		String fileUpload2 = request.getParameter("minato2");
-//		LOGGER.info("image1: " + fileUpload2);
-		LOGGER.info("Done image 1");
+		LOGGER.info("Done image1: " + fileUpload2);
 
 		if (fileUpload2 != null) {
 			String imageString = fileUpload2.substring(fileUpload2.indexOf(",") + 1, fileUpload2.length());
@@ -67,8 +65,7 @@ public class FileUpload extends HttpServlet {
 		}
 
 		String fileUpload3 = request.getParameter("minato3");
-//		LOGGER.info("image2: " + fileUpload3);
-		LOGGER.info("Done image 2");
+		LOGGER.info("Done image2: " + fileUpload3);
 
 		if (fileUpload3 != null) {
 			String imageString = fileUpload3.substring(fileUpload3.indexOf(",") + 1, fileUpload3.length());
@@ -108,7 +105,10 @@ public class FileUpload extends HttpServlet {
 
 	// write the image to a file
 	private static void writeImage(BufferedImage image, String nameImage, String formatsImage) throws IOException {
-
+		
+		// delete file image if exists
+		deleteImage(nameImage);
+		
 		if (image != null) {
 
 			File outputfile = new File(Configure.PATH + "image" + nameImage + formatsImage);
@@ -119,5 +119,19 @@ public class FileUpload extends HttpServlet {
 			LOGGER.error("Not found input file image!");
 		}
 
+	}
+	
+	// delete file image if exists
+	private static void deleteImage(String nameImage) {
+		
+		File[] listOfFiles = new File(Configure.PATH).listFiles();
+
+		for (File file : listOfFiles) {
+			if (file.isFile()) {
+				if (file.getAbsolutePath().contains("image" + nameImage)) {
+					file.delete();
+				}
+			}
+		}	
 	}
 }

@@ -6,7 +6,7 @@ public class Configure {
 	
 	public static final String NAME_PORT_MYSQL = "3306";
 	
-	public static final String USERNAME_MYSQL = "root";
+	public static final String USERNAME_MYSQL = "";
 	
 	public static final String PASSWORD_MYSQL = "";
 	

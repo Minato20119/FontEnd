@@ -19,13 +19,6 @@
     font-family: "Helvetica Neue",helvetica,Arial,sans-serif;
 }
 
-/* #page {
-    font-family: "Helvetica Neue",helvetica,Arial,sans-serif;
-    letter-spacing: 0.03em;
-    font-size: 14px;
-    color: #282828;
-} */
-
 h2 {
     font: normal 140% "Trebuchet MS", Verdana, sans;
     margin: 1.7em 0 0.5em 0;
@@ -50,7 +43,6 @@ h2 {
 
 #main {
     clear: both;
-    /* display: block; */
 }
 
 .right-content h2:after {
@@ -64,10 +56,3 @@ h2 {
     z-index: -1;
 }
 
-/* table .table11{
-    border-collapse: collapse;
-}
-
-table, tr, .table11 {
-    border: 1px solid black;
-} */
